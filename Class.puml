@@ -1,0 +1,64 @@
+@startuml
+
+class Book {
+  +int id
+  +String title
+  +String author
+  +String genre
+  +Date date_of_borrowing
+  +int stock
+  +String version_number
+  +String status
+  +int borrow_duration
+  +borrow_book()
+  +return_book()
+  +renew_book()
+  +display_book()
+}
+
+class User {
+  +int id
+  +String name
+  +String email
+  +String pass
+  +String role
+}
+
+class RegularUser {
+  +double fine
+  +borrow()
+  +return_book()
+  +add_to_list()
+  +renew()
+}
+
+class Librarian {
+  +add_book()
+  +remove_book()
+  +edit_book()
+  +add_user()
+  +remove_user()
+  +edit_user()
+}
+
+class List {
+  +int id_user
+  +add_book_to_list()
+  +remove_book_from_list()
+}
+
+class Library {
+  +int books_id
+  +search_book()
+  +view_available_books()
+}
+
+User <|-- RegularUser
+User <|-- Librarian
+Library "1" *-- "0.*" Book
+RegularUser "1" *-- "0.*" List
+RegularUser "1" *-- "0.*" Book : borrowed
+
+List "1" *-- "0.*" Book : wishlist
+
+@enduml
