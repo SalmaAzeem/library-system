@@ -1,0 +1,29 @@
+@startuml
+actor :Librarian: as lib
+actor :User:
+actor :Library System: as ls
+
+(Enter User ID) as enterID
+(Get ID of Borrowed Book) as borrow
+(Validate IDs) as validate
+(Assign Book ID to User) as assign
+(Set Due Date) as setDue
+(Click Confirm) as confirm
+(Send Confirmation Message) as confirmMsg
+
+lib -> enterID
+
+enterID ..> validate : includes
+
+lib --> borrow
+
+borrow ..> validate : includes
+
+ls --> validate
+lib --> assign
+lib --> setDue
+lib --> confirm
+
+ls --> confirmMsg
+User <-- confirmMsg : notifies
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+actor :User:
+actor :Payment System: as pay
+actor :Library System: as ls
+
+(Enter System) as enter
+(Go to Borrowed Books Page) as go
+(Select Overdue Book) as select
+(Calculate Fine) as cal
+(Click Pay Fine) as click
+(Go Through Payment Process) as process
+(Validate Payment) as valid
+(Send Confirmation Message) as confirm
+(Display Payment Error) as error
+
+User --> enter
+User --> go
+User --> select
+
+select ..> cal : includes
+ls --> cal
+
+User --> click
+User --> process
+
+process ..> valid : includes
+pay --> valid
+
+valid --> error : <<fail>>
+ls --> confirm : <<success>>
+
+User <-- confirm : notifies
+@enduml
