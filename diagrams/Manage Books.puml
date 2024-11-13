@@ -1,0 +1,45 @@
+@startuml
+actor Librarian as lib
+actor "Library Management System" as Sys
+actor "Library Database" as DB
+
+(Add Book) as Add
+(Edit Book Info) as Edit
+(Remove Book) as Remove
+(Add Book Info to DB) as DBadd
+(Edit Book Info in DB) as DBedit
+(Remove Book from DB) as DBremove
+(Find the Book to Edit) as edit2
+(Run SQL Add Statement) as SqlAdd
+(Run SQL Edit Statement) as SqlEdit
+(Run SQL Remove Statement) as SqlRemove
+(Confirmation or Error Message) as Confirm
+
+lib -down-> Add : Enter required info
+lib -down-> Edit : Enter Book ID to Edit
+lib -down-> Remove : Enter Book ID to Remove
+
+Add -down-> DBadd : includes
+DBadd -down-> Sys : Process Add Request
+Sys -down-> SqlAdd : Run SQL Add Statement
+SqlAdd -down-> DB : Execute Add in Database
+DB -down-> Confirm : Return Confirm/Error
+Confirm -up-> lib : Notify
+
+Edit -down-> edit2 : includes
+edit2 -down-> DB : Fetch Book Info
+DB -down-> Sys : Return Book Data
+Sys -down-> DBedit : Process Edit Request
+DBedit -down-> SqlEdit : Run SQL Edit Statement
+SqlEdit -down-> DB : Execute Edit in Database
+DB -down-> Confirm : Return Confirm/Error
+Confirm -up-> lib : Notify
+
+Remove -down-> DBremove : includes
+DBremove -down-> Sys : Process Remove Request
+Sys -down-> SqlRemove : Run SQL Remove Statement
+SqlRemove -down-> DB : Execute Remove in Database
+DB -down-> Confirm : Return Confirm/Error
+Confirm -up-> lib : Notify
+
+@enduml

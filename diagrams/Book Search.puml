@@ -1,0 +1,21 @@
+@startuml
+actor Librarian as Init
+actor "Library Management System" as System
+actor "Library Database" as DB
+
+(Enter Book Name or ISBN) as enterData
+(Find List of Relevant Books) as revBooks
+(Get Books from Database) as List
+
+Init -> enterData : Input Book Name/ISBN
+enterData ..> revBooks : includes
+revBooks -> System : Request Relevant Books
+System -> List : Fetch Books from Database
+List --> System : Return Book List
+System --> revBooks : Display Relevant Books
+List -> DB
+List <- DB
+
+
+@enduml
+
