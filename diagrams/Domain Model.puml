@@ -1,8 +1,47 @@
 @startuml
-'https://plantuml.com/object-diagram
-object Book
-object Librarian
-object User
-object Library
+
+' Define conceptual classes
+object Library {
+  Name
+  Location
+}
+
+object Book {
+  Details
+  ISBN
+}
+
+object Stock {
+  Quantity
+}
+
+object User {
+  ID
+}
+
+object Librarian {
+  ID
+  Role
+}
+
+object Loan {
+  Issue Date
+  Due Date
+}
+
+object Fine {
+  Amount
+  Status
+}
+
+' Define associations
+Library "1" --> "*" Book : Holds
+Library "1" --> "*" User : Has
+Library "1" --> "*" Librarian : Employs
+Book "1" --> "1" Stock : Has
+User "1" --> "*" Loan : Borrows
+Loan "1" --> "1" Book : For
+Loan "0..1" --> "1" Fine : Related to
+Librarian "1" --> "*" Loan : Processes
 
 @enduml
