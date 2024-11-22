@@ -1,0 +1,20 @@
+@startuml
+actor :User:
+actor :System: as sys
+
+(Enter Search Query) as search
+(System Responds with Book Availability) as response
+(Click Reserve Button) as reserve
+(Borrow Book) as borrow
+(Book is Reserved) as reserved
+
+User --> search
+search --> sys : processes query
+sys --> response : responds availability
+
+response --> reserve : <<out of stock>>
+response --> borrow : <<in stock>>
+
+reserve --> reserved
+borrow --> reserved
+@enduml

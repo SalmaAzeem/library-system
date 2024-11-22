@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+actor :Librarian:
+actor : System: as sys
+
+
+(Enter ID and Password) as enter
+(Request Authorization) as auth_req
+(Receive Authorization Response) as auth_resp
+(Open Home Page) as home
+(Display Account Not Found) as not_found
+
+Librarian --> enter
+Librarian --> auth_req
+auth_req ..> auth_resp : includes
+auth_resp --> home : <<success>>
+auth_resp --> not_found : <<fail>>
+@enduml

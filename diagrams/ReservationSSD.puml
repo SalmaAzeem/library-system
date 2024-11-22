@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+'Reservation use case
+autonumber
+User->system : Authentication Request(ID)
+system --> User: Authentication Response
+User -> system : Search(Book name)
+system-> User : Unavailable
+User -> system : Reserve(Book name)
+
+@enduml
