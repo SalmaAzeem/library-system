@@ -1,7 +1,6 @@
 @startuml
 actor :Librarian: as lib
 actor :User:
-actor :Library System: as ls
 
 (Enter User ID) as enterID
 (Get ID of Borrowed Book) as borrow
@@ -19,11 +18,10 @@ lib --> borrow
 
 borrow ..> validate : includes
 
-ls --> validate
+
 lib --> assign
 lib --> setDue
 lib --> confirm
-
-ls --> confirmMsg
+confirm ..> confirmMsg :includes
 User <-- confirmMsg : notifies
 @enduml

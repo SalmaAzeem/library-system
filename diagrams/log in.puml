@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/use-case-diagram
 actor :Librarian:
-actor : System: as sys
 
 
 (Enter ID and Password) as enter
