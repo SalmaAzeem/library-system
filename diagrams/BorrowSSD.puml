@@ -4,11 +4,7 @@
 'Borrow
 autonumber
 Librarian -> system: Search(Book name)
-system -> DB: search()
-DB --> system : search result
 system--> Librarian : List of matched books
 Librarian -> system : Borrow(book name)
-system-> DB: update()
-DB --> system: update response
 system --> Librarian : Display_info()
 @enduml

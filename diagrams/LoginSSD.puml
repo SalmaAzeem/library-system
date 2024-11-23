@@ -3,8 +3,6 @@ autonumber
 Librarian->system : Authentication Request(ID)
 system --> Librarian: Authentication Response
 Librarian -> system : Add Book(Book Name,Author name,Book number,genre,Status,Stock,Version number)
-system -> DB: update()
-DB --> system: update response
 system --> Librarian : Book added
 
 
