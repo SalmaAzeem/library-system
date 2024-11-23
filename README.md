@@ -7,9 +7,9 @@ The purpose of this project is to develop a Library Management System (LMS) that
 ### Assign Borrowed Book
 ![Assign Borrowed Book](https://github.com/user-attachments/assets/e16d12c4-674a-46af-8db4-b275a90efa56)
 ### Book Search
-![Book Search](https://github.com/user-attachments/assets/57e4eee9-120d-489e-8f2c-627ffdf7a489)
+![Book Search](https://github.com/user-attachments/assets/9710eb0c-2d9f-4ca2-aee9-7a3ad13a13cc)
 ### Manage Books
-![Manage Books](https://github.com/user-attachments/assets/1940054c-7679-406c-9ef3-61dd71d050c7)
+![Manage Books](https://github.com/user-attachments/assets/aec86ee9-8ede-4b74-8de3-048b9e9e04e5)
 ### Pay Book Fine
 ![Pay Book Fine](https://github.com/user-attachments/assets/2e05d07f-857a-46e3-af31-6eaa4379ca34)
 ### Reserve Book
