@@ -11,7 +11,7 @@ The purpose of this project is to develop a Library Management System (LMS) that
 ### Manage Books
 ![Manage Books](https://github.com/user-attachments/assets/aec86ee9-8ede-4b74-8de3-048b9e9e04e5)
 ### Pay Book Fine
-![Pay Book Fine](https://github.com/user-attachments/assets/2e05d07f-857a-46e3-af31-6eaa4379ca34)
+![Pay Book Fine](https://github.com/user-attachments/assets/7121834c-9df9-4dca-9609-f17e91ecafa8)
 ### Reserve Book
 ![reserve](https://github.com/user-attachments/assets/a628d2a5-0f85-4231-9f01-aef4aa5aec2d)
 
