@@ -1,7 +1,6 @@
 @startuml
 actor :User:
 actor :Payment System: as pay
-actor :Library System: as ls
 
 (Enter System) as enter
 (Go to Borrowed Books Page) as go
@@ -18,16 +17,15 @@ User --> go
 User --> select
 
 select ..> cal : includes
-ls --> cal
+
 
 User --> click
 User --> process
 
 process ..> valid : includes
 pay --> valid
-
-valid --> error : <<fail>>
-ls --> confirm : <<success>>
+valid ..> confirm : <<success>>
+valid ..> error : <<fail>>
 
 User <-- confirm : notifies
 @enduml

@@ -1,7 +1,5 @@
 @startuml
 actor Librarian as lib
-actor "Library Management System" as Sys
-actor "Library Database" as DB
 
 (Add Book) as Add
 (Edit Book Info) as Edit
@@ -14,32 +12,26 @@ actor "Library Database" as DB
 (Run SQL Edit Statement) as SqlEdit
 (Run SQL Remove Statement) as SqlRemove
 (Confirmation or Error Message) as Confirm
+(Return Correct book) as foundBook
 
 lib -down-> Add : Enter required info
 lib -down-> Edit : Enter Book ID to Edit
 lib -down-> Remove : Enter Book ID to Remove
 
-Add -down-> DBadd : includes
-DBadd -down-> Sys : Process Add Request
-Sys -down-> SqlAdd : Run SQL Add Statement
-SqlAdd -down-> DB : Execute Add in Database
-DB -down-> Confirm : Return Confirm/Error
+Add .down.> DBadd : includes
+DBadd .down.> SqlAdd : Process Add Request
+SqlAdd .down.> Confirm : Execute Add in Database
 Confirm -up-> lib : Notify
 
-Edit -down-> edit2 : includes
-edit2 -down-> DB : Fetch Book Info
-DB -down-> Sys : Return Book Data
-Sys -down-> DBedit : Process Edit Request
-DBedit -down-> SqlEdit : Run SQL Edit Statement
-SqlEdit -down-> DB : Execute Edit in Database
-DB -down-> Confirm : Return Confirm/Error
+Edit .down.> edit2 : includes
+edit2 .down.> foundBook : Fetch Book Info
+foundBook ..> DBedit : Found Book to Edit
+DBedit -down.> Confirm : Run SQL Edit Statement
 Confirm -up-> lib : Notify
 
-Remove -down-> DBremove : includes
-DBremove -down-> Sys : Process Remove Request
-Sys -down-> SqlRemove : Run SQL Remove Statement
-SqlRemove -down-> DB : Execute Remove in Database
-DB -down-> Confirm : Return Confirm/Error
+Remove -down.> DBremove : includes
+DBremove -down.> SqlRemove : Process Remove Request
+SqlRemove -down.> Confirm : Execute Remove in Database
 Confirm -up-> lib : Notify
 
 @enduml
