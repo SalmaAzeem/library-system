@@ -24,8 +24,8 @@ User --> process
 
 process ..> valid : includes
 pay --> valid
-valid --> confirm : <<success>>
-valid --> error : <<fail>>
+valid ..> confirm : <<success>>
+valid ..> error : <<fail>>
 
 User <-- confirm : notifies
 @enduml
