@@ -3,15 +3,15 @@ The purpose of this project is to develop a Library Management System (LMS) that
 
 # Use Case Diagrams
 ### Login
-![log in](https://github.com/user-attachments/assets/890f7c93-c984-4d10-8e0c-ab5034a3cfc7)
+![log in](https://github.com/user-attachments/assets/cf2c9b2f-da0b-472f-85dd-9b5c5a74626a)
 ### Assign Borrowed Book
-![Assign Borrowed Book](https://github.com/user-attachments/assets/1d7d0c75-3a3c-488b-a1e5-0deb1d250252)
+![Assign Borrowed Book](https://github.com/user-attachments/assets/e16d12c4-674a-46af-8db4-b275a90efa56)
 ### Book Search
 ![Book Search](https://github.com/user-attachments/assets/57e4eee9-120d-489e-8f2c-627ffdf7a489)
 ### Manage Books
 ![Manage Books](https://github.com/user-attachments/assets/1940054c-7679-406c-9ef3-61dd71d050c7)
 ### Pay Book Fine
-![Pay Book Fine](https://github.com/user-attachments/assets/d26cee37-d633-425d-bffa-d9b8e96f20df)
+![Pay Book Fine](https://github.com/user-attachments/assets/2e05d07f-857a-46e3-af31-6eaa4379ca34)
 ### Reserve Book
 ![reserve](https://github.com/user-attachments/assets/a628d2a5-0f85-4231-9f01-aef4aa5aec2d)
 
