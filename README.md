@@ -17,9 +17,9 @@ The purpose of this project is to develop a Library Management System (LMS) that
 
 # System Sequence Diagram
 ### Borrow Book
-![BorrowSSD](https://github.com/user-attachments/assets/5b7a5ae2-bef9-43d3-b1b5-b658df3d56ef)
+![BorrowSSD](https://github.com/user-attachments/assets/0c43bde1-e6a5-4387-bd12-a15cb226a936)
 ### Login 
-![LoginSSD](https://github.com/user-attachments/assets/db9d618b-d035-4049-8115-2c1c43f1aed8)
+![LoginSSD](https://github.com/user-attachments/assets/ed8ea7f3-e60a-4fe1-ba66-73fb187fd4d5)
 ### Reserve Book
 ![ReservationSSD](https://github.com/user-attachments/assets/9a70f22a-5edb-4e9e-9f39-6d64b92d6586)
 
