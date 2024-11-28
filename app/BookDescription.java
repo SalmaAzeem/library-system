@@ -4,11 +4,20 @@ import java.util.Date;
 import java.util.List;
 
 public class BookDescription {
-    String summary;
-    String title,Author,genre,publisher;
-    Date publicationDate;
-    int ISBN,pages;
-    List<String> TableOfContents;
+    private String summary;
+    private String title,Author,genre,publisher;
+    private Date publicationDate;
+    private int ISBN,pages;
+    private List<String> TableOfContents;
+
+    public BookDescription(String summary,String title, String genre,String publisher,int ISBN, int pages) {
+        this.summary = summary;
+        this.title=title;
+        this.genre=genre;
+        this.publisher=publisher;
+        this.ISBN=ISBN;
+        this.pages=pages;
+    }
 
     public String getSummary() {
         return summary;

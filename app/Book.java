@@ -5,7 +5,10 @@ public class Book
     int Stock;
     BookDescription Description;
     boolean Available;
-
+    public Book()
+    {
+        Description.setAuthor("Unknown");
+    }
     public Book(BookDescription description) {
         Description = description;
     }
