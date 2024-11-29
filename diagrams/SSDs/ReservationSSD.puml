@@ -6,7 +6,7 @@ autonumber
 User->system : Authentication Request(ID)
 system --> User: Authentication Response
 User -> system : Search(Book name)
-system-> User : Unavailable
+system--> User : Unavailable
 User -> system : Reserve(Book name)
 
 @enduml

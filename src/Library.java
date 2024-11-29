@@ -1,4 +1,4 @@
-package app;
+package src;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 public class Library {
      Librarian Clark;
      ArrayList<Book> Books;
+     ArrayList<User> Clients;
      public List<Book> Search(String name)
      {
          ArrayList<Book> MatchedResults = new ArrayList<>();
@@ -25,7 +26,7 @@ public class Library {
         }
         return false;
     }
-     public boolean AddBook(String summary,String title, String genre,String publisher,int ISBN, int pages)
+     public boolean CreateBook(String summary,String title, String genre,String publisher,int ISBN, int pages)
      {
          if(!SearchByIsbn(ISBN)) {
              BookDescription newBookDescription = new BookDescription(summary, title, genre, publisher, ISBN, pages);
