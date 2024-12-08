@@ -1,43 +1,74 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-object Library {
+class Library {
   Name
   Location
   Clark
-  Books
+  BookList
   Clients
-  BookDescription
+  CurrentBorrowedList;
 }
-object Book {
- BookDescription
+class BookList {
+  - Books
+  -BookDescription
+ + Add()
+ + Delete()
+ + SearchByTitle()
+ + SearchByAuthore()
+ + Update()
+}
+class Book {
+ - BookDescription
+ - Stock
+ + Borrow()
 
 }
-object BookDescription {
-  Details
+class BookDescription {
+  Author
+  Publisher
   ISBN
+  Title
+  publicationDate
+  TableOfContents
+  genre
+  Summary
 }
-
-object Stock {
-  Quantity
-}
-
-object User {
+class User {
   ID
+  BorrowedList;
+
 }
 
-object Librarian {
-  ID
-  Role
+abstract class Person{
+  name;
+  age;
+  Gender;
 }
 
-object Loan {
+class Librarian {
+     EmployeeID
+}
+
+class Borrow {
   Issue Date
   Due Date
 }
 
-object Fine {
-  Amount
-  Status
+class Fine {
+  - Amount
+  - Status
+  + calculateAmount()
 }
+BookList "1" --> "*" Book : Holds
+Book "1" --> "1" BookDescription : Has
+Person "1" -->"*" Librarian : extends
+Person "1" -->"*" User : extends
+Library "1" --> "*" User : Has
+Library "1" --> "*" Librarian : Employs
+Book "1" --> "1" Stock : Has
+User "1" --> "*" Loan : Borrows
+Loan "1" --> "1" Book : For
+Loan "0..1" --> "1" Fine : Related to
+Librarian "1" --> "*" Borrow : Processes
 @enduml
