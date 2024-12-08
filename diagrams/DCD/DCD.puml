@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+object Library {
+  Name
+  Location
+  Clark
+  Books
+  Clients
+  BookDescription
+}
+object Book {
+ BookDescription
+
+}
+object BookDescription {
+  Details
+  ISBN
+}
+
+object Stock {
+  Quantity
+}
+
+object User {
+  ID
+}
+
+object Librarian {
+  ID
+  Role
+}
+
+object Loan {
+  Issue Date
+  Due Date
+}
+
+object Fine {
+  Amount
+  Status
+}
+@enduml
