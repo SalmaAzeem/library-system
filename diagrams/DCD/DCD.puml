@@ -15,7 +15,7 @@ class Library {
   Location : String
   Clark: Librarian
   BooksList : BookList
-  Clients: User
+  Users : User
   CurrentBorrowedList: BookList
    'Takes the info Of the user and the borrowed Books add it to the currentBorrowedBooks
   + Borrow()
@@ -26,7 +26,7 @@ class Library {
 'Could have an abstract class to implement the borrow function ?
 class BookList {
   - Books: Book
-  -BookDescriptions: BookDescription
+  ' -BookDescriptions: BookDescription
  + Add()
  + Delete()
  + SearchByTitle()
@@ -36,6 +36,7 @@ class BookList {
 class Book {
  - BookDescription: BookDescription
  - Stock
+ 'Could this be removed and replaced by unique ID instead?
  'Decrement the stock
  + Borrow()
  + Display()
@@ -53,7 +54,7 @@ class BookDescription {
 }
 class User {
   ID : Integer
-  BorrowedList : BookList;
+  BorrowedList : BookList
   'Adds the Book to the user's borrowedList
   + Borrow()
   'Remove the book from the user's borrowedList
@@ -75,15 +76,14 @@ class Librarian {
 }
 
 class Borrow {
-  Issue Date : Date
-  Due Date : Date
+  - user : User
+  - book : Book
+  - Issue Date : Date
+  - Due Date : Date
+  - Fine : Float
+  - FineStatus : Boolean
+  + calculateFine()
   + Notify()
-}
-
-class Fine {
-  - Amount : Float
-  - Status : Boolean
-  + calculateAmount()
 }
 LMS "1" --> "*" Branch : Has
 BookList "1" --> "*" Book : Holds
@@ -92,10 +92,10 @@ Person "1" -->"*" Librarian : extends
 Person "1" -->"*" User : extends
 Person "1" -->"*" Author : extends
 Library "1" --> "*" User : Has
+Library "1" --> "1" BookList : Records
 Library "1" --> "*" Librarian : Employs
-Book "1" --> "1" Stock : Has
-User "1" --> "*" Loan : Borrows
-Loan "1" --> "1" Book : For
-Loan "0..1" --> "1" Fine : Related to
+User "1" --> "*" Book : Borrows
 Librarian "1" --> "*" Borrow : Processes
+Librarian "1" -->  "1" Library : Works in
+Borrow "1" --> "1" User : Notifies
 @enduml
