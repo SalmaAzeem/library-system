@@ -1,17 +1,20 @@
 @startuml
 actor :User:
 actor :Payment System: as pay
+left to right direction
 
-(Enter System) as enter
-(Go to Borrowed Books Page) as go
-(Select Overdue Book) as select
-(Calculate Fine) as cal
-(Click Pay Fine) as click
-(Go Through Payment Process) as process
-(Validate Payment) as valid
-(Send Confirmation Message) as confirm
-(Display Payment Error) as error
 
+rectangle "System" {
+    (Enter System) as enter
+    (Go to Borrowed Books Page) as go
+    (Select Overdue Book) as select
+    (Calculate Fine) as cal
+    (Click Pay Fine) as click
+    (Go Through Payment Process) as process
+    (Validate Payment) as valid
+    (Send Confirmation Message) as confirm
+    (Display Payment Error) as error
+}
 User --> enter
 User --> go
 User --> select

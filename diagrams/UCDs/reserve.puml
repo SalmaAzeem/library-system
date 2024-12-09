@@ -1,19 +1,24 @@
 @startuml
+left to right direction
 actor :User:
-actor :System: as sys
 
-(Enter Search Query) as search
-(System Responds with Book Availability) as response
-(Click Reserve Button) as reserve
-(Borrow Book) as borrow
-(Book is Reserved) as reserved
+rectangle "System" {
+    (Enter Search Query) as search
+    (Select Book) as sb
+    (Click Reserve Button) as reserve
+    (Borrow Book) as borrow
+    (Book is Reserved) as reserved
+    (Process Query) as pq
+    (Check Availability) as ca
+}
 
 User --> search
-search --> sys : processes query
-sys --> response : responds availability
+search ..> pq: <<includes>>
 
-response --> reserve : <<out of stock>>
-response --> borrow : <<in stock>>
+User --> sb
+sb --> reserve : <<out of stock>>
+sb --> borrow : <<in stock>>
+sb ..> ca : <<includes>>
 
 reserve --> reserved
 borrow --> reserved
