@@ -1,16 +1,16 @@
 @startuml
+left to right direction
 actor Librarian as Init
 
-(Search for book by Entering Book Name or ISBN) as enterData
-(Find List of Relevant Books) as revBooks
-(Get Books from Database) as List
+
+rectangle "System" {
+    (Search for book by Entering Book Name or ISBN) as enterData
+    (Find List of Relevant Books) as revBooks
+    (Get Books from Database) as List
+}
 
 Init -> enterData : Input Book Name/ISBN
 enterData ..> revBooks : includes
 List --> Init : Display Relevant Books
 revBooks -> List : Fetch Books from Database
-
-
-
 @enduml
-

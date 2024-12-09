@@ -1,14 +1,17 @@
 @startuml
 actor :Librarian: as lib
 actor :User:
+left to right direction
 
-(Enter User ID) as enterID
-(Get ID of Borrowed Book) as borrow
-(Validate IDs) as validate
-(Assign Book ID to User) as assign
-(Set Due Date) as setDue
-(Click Confirm) as confirm
-(Send Confirmation Message) as confirmMsg
+rectangle "System" {
+    (Enter User ID) as enterID
+    (Get ID of Borrowed Book) as borrow
+    (Validate IDs) as validate
+    (Assign Book ID to User) as assign
+    (Set Due Date) as setDue
+    (Click Confirm) as confirm
+    (Send Confirmation Message) as confirmMsg
+}
 
 lib -> enterID
 

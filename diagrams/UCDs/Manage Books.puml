@@ -1,18 +1,22 @@
 @startuml
+left to right direction
 actor Librarian as lib
 
-(Add Book) as Add
-(Edit Book Info) as Edit
-(Remove Book) as Remove
-(Add Book Info to DB) as DBadd
-(Edit Book Info in DB) as DBedit
-(Remove Book from DB) as DBremove
-(Find the Book to Edit) as edit2
-(Run SQL Add Statement) as SqlAdd
-(Run SQL Edit Statement) as SqlEdit
-(Run SQL Remove Statement) as SqlRemove
-(Confirmation or Error Message) as Confirm
-(Return Correct book) as foundBook
+rectangle "System" {
+    (Add Book) as Add
+    (Edit Book Info) as Edit
+    (Remove Book) as Remove
+    (Add Book Info to DB) as DBadd
+    (Edit Book Info in DB) as DBedit
+    (Remove Book from DB) as DBremove
+    (Find the Book to Edit) as edit2
+    (Run SQL Add Statement) as SqlAdd
+    (Run SQL Edit Statement) as SqlEdit
+    (Run SQL Remove Statement) as SqlRemove
+    (Confirmation or Error Message) as Confirm
+    (Return Correct book) as foundBook
+}
+
 
 lib -down-> Add : Enter required info
 lib -down-> Edit : Enter Book ID to Edit

@@ -1,13 +1,15 @@
 @startuml
 'https://plantuml.com/use-case-diagram
+left to right direction
 actor :Librarian:
 
-
-(Enter ID and Password) as enter
-(Request Authorization) as auth_req
-(Receive Authorization Response) as auth_resp
-(Open Home Page) as home
-(Display Account Not Found) as not_found
+rectangle "System" {
+    (Enter ID and Password) as enter
+    (Request Authorization) as auth_req
+    (Receive Authorization Response) as auth_resp
+    (Open Home Page) as home
+    (Display Account Not Found) as not_found
+}
 
 Librarian --> enter
 Librarian --> auth_req
