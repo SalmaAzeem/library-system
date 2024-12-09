@@ -85,6 +85,7 @@ class Borrow {
   + calculateFine()
   + Notify()
 }
+
 LMS "1" --> "*" Branch : Has
 BookList "1" --> "*" Book : Holds
 Book "1" --> "1" BookDescription : Has
