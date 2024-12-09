@@ -1,4 +1,5 @@
 @startuml
+!pragma layout smetana
 'https://plantuml.com/class-diagram
 class LMS
 {
@@ -17,13 +18,15 @@ class Library {
   BooksList : BookList
   Users : User
   CurrentBorrowedList: BookList
-   'Takes the info Of the user and the borrowed Books add it to the currentBorrowedBooks
+   ''Takes the info Of the user and the borrowed Books add it to the currentBorrowedBooks
   + Borrow()
   + login()
   + Reserve()
   + Retrieve()
+  + DisplayBorrowedList()
+  + ViewTopFrequent()
 }
-'Could have an abstract class to implement the borrow function ?
+''Could have an abstract class to implement the borrow function ?
 class BookList {
   - Books: Book
   ' -BookDescriptions: BookDescription
@@ -32,71 +35,90 @@ class BookList {
  + SearchByTitle()
  + SearchByAuthor()
  + Update()
+ + Categorize()
 }
 class Book {
  - BookDescription: BookDescription
  - Stock
- 'Could this be removed and replaced by unique ID instead?
- 'Decrement the stock
+ ''Could this be removed and replaced by unique ID instead?
+ ''Decrement the stock
  + Borrow()
  + Display()
 
 }
 class BookDescription {
-  Author: User
-  Publisher: String
-  ISBN : Integer
-  Title: String
-  publicationDate : Date
-  TableOfContents : List
-  genre: String
-  Summary : String
+  - Author: User
+  - Publisher: String
+  - ISBN : Integer
+  - Title: String
+  - publicationDate : Date
+  - TableOfContents : List
+  - genre: String
+  - CanBeBorrowed : Boolean
+  - Summary : String
+  + viewDescription()
 }
 class User {
-  ID : Integer
-  BorrowedList : BookList
+  - ID : Integer
+  - BorrowedList : BookList
+  - readingList : BookList
+  - Frequency : Integer
   'Adds the Book to the user's borrowedList
   + Borrow()
   'Remove the book from the user's borrowedList
   + Retrieve()
+  + AddToReadingList()
 }
-'Out of context ?
+''Out of context ?
 class Author{
 AuthorID: Integer
 }
 abstract class Person{
-  name:  String
-  age: Integer
-  Gender : Enum
-  password : string
-}
+  - name:  String
+  - age: Integer
+  - Gender : Enum
+  - Email : String
+  - phoneNumber : Integer
+  - password : string
+  + EditName()
+  + EditEmail()
+  + EditPassword()
+  + EditPhoneNumber()
 
+}
+''What are the functions of librarian and how to let them confirm the retrieve request
 class Librarian {
      EmployeeID : Integer
 }
 
 class Borrow {
-  - user : User
-  - book : Book
+  - userID : Integer
+  '' can we add an ID to each book so we need to sum by ISBN to know the stock so we can assign the ID to the borrow class
+  - bookID : Integer
   - Issue Date : Date
   - Due Date : Date
   - Fine : Float
   - FineStatus : Boolean
   + calculateFine()
   + Notify()
+  + Display()
+  ''retrieves the History of specific user
+  + DisplayHistory(integer ID)
+  + Extend()
+
 }
 
 LMS "1" --> "*" Branch : Has
 BookList "1" --> "*" Book : Holds
+Branch "1" --> "1" Library : includes
 Book "1" --> "1" BookDescription : Has
 Person "1" -->"*" Librarian : extends
 Person "1" -->"*" User : extends
 Person "1" -->"*" Author : extends
 Library "1" --> "*" User : Has
 Library "1" --> "1" BookList : Records
-Library "1" --> "*" Librarian : Employs
 User "1" --> "*" Book : Borrows
 Librarian "1" --> "*" Borrow : Processes
 Librarian "1" -->  "1" Library : Works in
-Borrow "1" --> "1" User : Notifies
+Borrow "1" --> "*" User : Notifies
 @enduml
