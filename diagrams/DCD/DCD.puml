@@ -1,69 +1,96 @@
 @startuml
 'https://plantuml.com/class-diagram
-
-class Library {
-  Name
-  Location
-  Clark
-  BookList
-  Clients
-  CurrentBorrowedList;
+class LMS
+{
+Branches: Branch
 }
+class Branch
+{
+ Libraries : Library
+ BranchID : Integer
+}
+class Library {
+  Name: String
+  'Should it be a Library Class cuz it's a physical place?
+  Location : String
+  Clark: Librarian
+  BooksList : BookList
+  Clients: User
+  CurrentBorrowedList: BookList
+   'Takes the info Of the user and the borrowed Books add it to the currentBorrowedBooks
+  + Borrow()
+  + login()
+  + Reserve()
+  + Retrieve()
+}
+'Could have an abstract class to implement the borrow function ?
 class BookList {
-  - Books
-  -BookDescription
+  - Books: Book
+  -BookDescriptions: BookDescription
  + Add()
  + Delete()
  + SearchByTitle()
- + SearchByAuthore()
+ + SearchByAuthor()
  + Update()
 }
 class Book {
- - BookDescription
+ - BookDescription: BookDescription
  - Stock
+ 'Decrement the stock
  + Borrow()
+ + Display()
 
 }
 class BookDescription {
-  Author
-  Publisher
-  ISBN
-  Title
-  publicationDate
-  TableOfContents
-  genre
-  Summary
+  Author: User
+  Publisher: String
+  ISBN : Integer
+  Title: String
+  publicationDate : Date
+  TableOfContents : List
+  genre: String
+  Summary : String
 }
 class User {
-  ID
-  BorrowedList;
-
+  ID : Integer
+  BorrowedList : BookList;
+  'Adds the Book to the user's borrowedList
+  + Borrow()
+  'Remove the book from the user's borrowedList
+  + Retrieve()
 }
-
+'Out of context ?
+class Author{
+AuthorID: Integer
+}
 abstract class Person{
-  name;
-  age;
-  Gender;
+  name:  String
+  age: Integer
+  Gender : Enum
+  password : string
 }
 
 class Librarian {
-     EmployeeID
+     EmployeeID : Integer
 }
 
 class Borrow {
-  Issue Date
-  Due Date
+  Issue Date : Date
+  Due Date : Date
+  + Notify()
 }
 
 class Fine {
-  - Amount
-  - Status
+  - Amount : Float
+  - Status : Boolean
   + calculateAmount()
 }
+LMS "1" --> "*" Branch : Has
 BookList "1" --> "*" Book : Holds
 Book "1" --> "1" BookDescription : Has
 Person "1" -->"*" Librarian : extends
 Person "1" -->"*" User : extends
+Person "1" -->"*" Author : extends
 Library "1" --> "*" User : Has
 Library "1" --> "*" Librarian : Employs
 Book "1" --> "1" Stock : Has
