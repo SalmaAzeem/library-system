@@ -20,11 +20,11 @@ class Library {
   CurrentBorrowedList: BookList
    ''Takes the info Of the user and the borrowed Books add it to the currentBorrowedBooks
   + Borrow()
-  + login()
-  + Reserve()
-  + Retrieve()
+  + login(Integer Email, Integer Password)
+  + Retrieve(Book book)
   + DisplayBorrowedList()
-  + ViewTopFrequent()
+  ''returns the K frequent members
+  + ViewTopFrequent(Integer number)
 }
 ''Could have an abstract class to implement the borrow function ?
 class BookList {
@@ -43,7 +43,7 @@ class Book {
  ''Could this be removed and replaced by unique ID instead?
  ''Decrement the stock
  + Borrow()
- + Display()
+ + DisplayInfo()
 
 }
 class BookDescription {
@@ -66,8 +66,9 @@ class User {
   'Adds the Book to the user's borrowedList
   + Borrow()
   'Remove the book from the user's borrowedList
-  + Retrieve()
-  + AddToReadingList()
+  + Retrieve(Book book)
+  + AddToReadingList(Book book)
+  + Reserve(Book book)
 }
 ''Out of context ?
 class Author{
@@ -80,10 +81,10 @@ abstract class Person{
   - Email : String
   - phoneNumber : Integer
   - password : string
-  + EditName()
-  + EditEmail()
-  + EditPassword()
-  + EditPhoneNumber()
+  + EditName(String name)
+  + EditEmail(String Email)
+  + EditPassword(String Password)
+  + EditPhoneNumber(Integer phoneNumber)
 
 }
 ''What are the functions of librarian and how to let them confirm the retrieve request
@@ -100,11 +101,11 @@ class Borrow {
   - Fine : Float
   - FineStatus : Boolean
   + calculateFine()
-  + Notify()
+  + Notify(Integer ID)
   + Display()
   ''retrieves the History of specific user
   + DisplayHistory(integer ID)
-  + Extend()
+  + Extend(Integer BookID, Date DueDate, Integer UserID)
 
 }
 
