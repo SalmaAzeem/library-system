@@ -3,47 +3,51 @@
 'https://plantuml.com/class-diagram
 class LMS
 {
-Branches: Branch
+ - Branches: Branch
+ + viewBranchesInfo()
 }
 class Branch
 {
- Libraries : Library
- BranchID : Integer
+ - Libraries : Library
+ - BranchID : Integer
+ + ShowInfo(): void
 }
 class Library {
-  Name: String
-  'Should it be a Library Class cuz it's a physical place?
-  Location : String
-  Clark: Librarian
-  BooksList : BookList
-  Users : User
-  CurrentBorrowedList: BookList
-   ''Takes the info Of the user and the borrowed Books add it to the currentBorrowedBooks
-  + Borrow()
+  - Name: String
+  - Location : String
+  - Clark: Librarian
+  - BooksList : BookList
+  - Users : User
+  - CurrentBorrowedList: BookList
+   ''Takes the info Of the user and the borrowed Books add it to the currentBorrowedBooks and search for the user in the userList and give it the Book to add it in its list and calls the decrease function for stock
+  + Borrow() : void
   + login(Integer Email, Integer Password)
   + Retrieve(Book book)
-  + DisplayBorrowedList()
+  + DisplayBorrowedList() : List<Book>
   ''returns the K frequent members
-  + ViewTopFrequent(Integer number)
+  + ViewTopFrequent(Integer number) List<User>
+  + ShowLibraryInfo() : void
 }
 ''Could have an abstract class to implement the borrow function ?
 class BookList {
   - Books: Book
   ' -BookDescriptions: BookDescription
  + Add()
- + Delete()
- + SearchByTitle()
- + SearchByAuthor()
+ + Delete() : Boolean
+ + SearchByTitle() : Book
+ + SearchByAuthor() : List<Book>
  + Update()
- + Categorize()
+ + Categorize() List<List<Book>>
+ '' What may return?
 }
 class Book {
  - BookDescription: BookDescription
  - Stock
  ''Could this be removed and replaced by unique ID instead?
- ''Decrement the stock
- + Borrow()
+ ''Decrement the stock could be removed and replaced by setter function
+ + StockDecrease()
  + DisplayInfo()
+
 
 }
 class BookDescription {
@@ -51,12 +55,14 @@ class BookDescription {
   - Publisher: String
   - ISBN : Integer
   - Title: String
+  - ID : Integer
+  ' one ISBN could have multiple IDs
   - publicationDate : Date
   - TableOfContents : List
   - genre: String
   - CanBeBorrowed : Boolean
   - Summary : String
-  + viewDescription()
+  + viewDescription() : void
 }
 class User {
   - ID : Integer
@@ -64,15 +70,11 @@ class User {
   - readingList : BookList
   - Frequency : Integer
   'Adds the Book to the user's borrowedList
-  + Borrow()
+  + AddToBorrowedList()
   'Remove the book from the user's borrowedList
-  + Retrieve(Book book)
-  + AddToReadingList(Book book)
-  + Reserve(Book book)
-}
-''Out of context ?
-class Author{
-AuthorID: Integer
+  + Retrieve(Book book) : Boolean
+  + AddToReadingList(Book book) : void
+  + Reserve(Book book) : Boolean
 }
 abstract class Person{
   - name:  String
@@ -81,10 +83,10 @@ abstract class Person{
   - Email : String
   - phoneNumber : Integer
   - password : string
-  + EditName(String name)
-  + EditEmail(String Email)
-  + EditPassword(String Password)
-  + EditPhoneNumber(Integer phoneNumber)
+  + EditName(String name) : void
+  + EditEmail(String Email) : void
+  + EditPassword(String Password) : void
+  + EditPhoneNumber(Integer phoneNumber): void
 
 }
 ''What are the functions of librarian and how to let them confirm the retrieve request
@@ -102,10 +104,10 @@ class Borrow {
   - FineStatus : Boolean
   + calculateFine()
   + Notify(Integer ID)
-  + Display()
+  + Display() : void
   ''retrieves the History of specific user
-  + DisplayHistory(integer ID)
-  + Extend(Integer BookID, Date DueDate, Integer UserID)
+  + DisplayHistory(integer ID) List<Borrow>
+  + Extend(Integer BookID, Date DueDate, Integer UserID) : Boolean
 
 }
 
@@ -115,7 +117,6 @@ Branch "1" --> "1" Library : includes
 Book "1" --> "1" BookDescription : Has
 Person "1" -->"*" Librarian : extends
 Person "1" -->"*" User : extends
-Person "1" -->"*" Author : extends
 Library "1" --> "*" User : Has
 Library "1" --> "1" BookList : Records
 User "1" --> "*" Book : Borrows
