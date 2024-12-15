@@ -5,7 +5,18 @@ class LMS
 {
  - Branches: Branch
  + viewBranchesInfo()
+ + ManageBranches()
 }
+class FineManagement
+{
+  - borrow : Borrow
+  - Fine : Float
+  - FineStatus : Boolean
+  + calculateFine()
+  + Notify(Integer ID)
+
+}
+
 class Branch
 {
  - Libraries : Library
@@ -45,7 +56,7 @@ class Book {
  - Stock
  ''Could this be removed and replaced by unique ID instead?
  ''Decrement the stock could be removed and replaced by setter function
- + StockDecrease()
+ + StockManagement()
  + DisplayInfo()
 
 
@@ -100,10 +111,7 @@ class Borrow {
   - bookID : Integer
   - Issue Date : Date
   - Due Date : Date
-  - Fine : Float
-  - FineStatus : Boolean
-  + calculateFine()
-  + Notify(Integer ID)
+
   + Display() : void
   ''retrieves the History of specific user
   + DisplayHistory(integer ID) List<Borrow>
@@ -114,13 +122,13 @@ class Borrow {
 LMS "1" --> "*" Branch : Has
 BookList "1" --> "*" Book : Holds
 Branch "1" --> "1" Library : includes
+FineManagement "1" --> "1" Borrow : includes
 Book "1" --> "1" BookDescription : Has
 Person "1" -->"*" Librarian : extends
 Person "1" -->"*" User : extends
 Library "1" --> "*" User : Has
 Library "1" --> "1" BookList : Records
-User "1" --> "*" Book : Borrows
 Librarian "1" --> "*" Borrow : Processes
 Librarian "1" -->  "1" Library : Works in
-Borrow "1" --> "*" User : Notifies
+FineManagement "1" --> "*" User : Notifies
 @enduml
