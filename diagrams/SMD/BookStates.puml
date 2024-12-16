@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/state-diagram
+!pragma layout smetana
+scale 350 width
+[*] -->  Available
+Available --> NotAvailable : Borrow
+NotAvailable --> Available : Retrieve
+state Available
+state NotAvailable
+
+@enduml

@@ -1,4 +1,4 @@
-package src.Model;
+package src.model;
 
 import java.util.Date;
 import java.util.List;
@@ -8,6 +8,7 @@ public class BookDescription {
     private String title,Author,genre,publisher;
     private Date publicationDate;
     private int ISBN,pages;
+    private int ID;
     private List<String> TableOfContents;
 
     public BookDescription(String summary,String title, String genre,String publisher,int ISBN, int pages) {
@@ -17,6 +18,14 @@ public class BookDescription {
         this.publisher=publisher;
         this.ISBN=ISBN;
         this.pages=pages;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getSummary() {

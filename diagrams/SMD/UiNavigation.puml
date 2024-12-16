@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/state-diagram
+!pragma layout smetana
+[*] --> LoginScreen
+
+LoginScreen --> Dashboard : "User clicks Login"
+LoginScreen --> ErrorDialog : "Login fails"
+
+ErrorDialog --> LoginScreen : "User dismisses Error"
+
+Dashboard --> SettingsPage : "User clicks Settings Icon"
+SettingsPage --> Dashboard : "User clicks Back"
+
+@enduml

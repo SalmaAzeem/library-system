@@ -23,5 +23,5 @@ The purpose of this project is to develop a Library Management System (LMS) that
 ### Reserve Book
 ![ReservationSSD](https://github.com/user-attachments/assets/9a70f22a-5edb-4e9e-9f39-6d64b92d6586)
 
-# Domain src.Model.Model
-![Domain src.Model.Model](https://github.com/user-attachments/assets/bb5cd2cb-8866-42e7-a030-e616070ea816)
+# Domain src.model.Model
+![Domain src.model.Model](https://github.com/user-attachments/assets/bb5cd2cb-8866-42e7-a030-e616070ea816)

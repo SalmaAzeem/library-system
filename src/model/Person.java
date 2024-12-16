@@ -1,6 +1,6 @@
-package src.Model;
+package src.model;
 
-public class Person {
+public abstract class Person {
     String name;
     int age;
     String Gender;
