@@ -8,6 +8,6 @@ User -> Page: Search for a book
 Page -> DB: Query relevant data
 DB --> Page: Return relevant books
 Page --> User: Book details (In stock)
-User -> System: Click Reserve Button
-System --> User: Book Reserved Confirmation
+User -> System: Click Borrow Button
+System --> User: Book Borrowing Confirmation
 @enduml
