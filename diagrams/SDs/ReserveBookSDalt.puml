@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant "Functional Page" as Page
+participant "System" as System
+participant "Database" as DB
+
+User -> Page: Search for a book
+Page -> DB: Query relevant data
+DB --> Page: Return relevant books
+Page --> User: Book details (In stock)
+User -> System: Click Reserve Button
+System --> User: Book Reserved Confirmation
+@enduml

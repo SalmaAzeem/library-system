@@ -1,0 +1,13 @@
+@startuml
+actor Librarian
+participant "Login Page" as LoginPage
+participant "Database" as DB
+participant "System" as System
+
+Librarian -> LoginPage: Enter Login Credentials
+LoginPage -> DB: Send Authorization Request
+DB --> LoginPage: Authorization Response (Success)
+LoginPage -> System: Open Home Page
+System --> Librarian: Home Page Displayed
+
+@enduml

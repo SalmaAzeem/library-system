@@ -1,0 +1,10 @@
+@startuml
+actor Librarian
+participant "Login Page" as LoginPage
+participant "Database" as DB
+
+Librarian -> LoginPage: Enter ID and Password
+LoginPage -> DB: Send Authorization Request
+DB --> LoginPage: Authorization Response (Failure)
+LoginPage --> Librarian: Display "Account Not Found" Message
+@enduml
