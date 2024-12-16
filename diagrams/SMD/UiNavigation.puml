@@ -3,12 +3,16 @@
 !pragma layout smetana
 [*] --> LoginScreen
 
-LoginScreen --> Dashboard : "User clicks Login"
-LoginScreen --> ErrorDialog : "Login fails"
+LoginScreen --> HomePage : "Login successfully"
+LoginScreen --> SignUpPage : "Create new account"
+LoginScreen --> LoginScreen : "Login fails"
+SignUpPage -->HomePage : "Account is created"
+HomePage --> SettingsPage : "User clicks Settings Icon"
+SettingsPage --> HomePage : "User clicks Back/ log out"
 
-ErrorDialog --> LoginScreen : "User dismisses Error"
-
-Dashboard --> SettingsPage : "User clicks Settings Icon"
-SettingsPage --> Dashboard : "User clicks Back"
+HomePage --> SearchPage : "User clicks Search Icon"
+HomePage --> NotificationsPage : "User clicks Notification Icon"
+HomePage --> BookDetailsPage : "User clicks on specific Book"
+HomePage --> AboutPage : "User clicks About Icon"
 
 @enduml
