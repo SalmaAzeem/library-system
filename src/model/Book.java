@@ -1,5 +1,4 @@
 package src.model;
-
 public class Book
 {
     int Stock;
