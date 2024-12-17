@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import src.model.Book;
+
 
 public class BookList {
     private  final List<Book> books = new ArrayList<Book>();

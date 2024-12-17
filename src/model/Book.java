@@ -1,12 +1,13 @@
 package src.model;
+import src.model.BookDescription;
 public class Book
 {
-    int Stock;
-    BookDescription Description;
-    boolean Available;
+    private int Stock;
+    private BookDescription Description;
+    private boolean Available;
     public Book()
     {
-        Description.setAuthor("Unknown");
+
     }
     public Book(BookDescription description) {
         Description = description;

@@ -1,9 +1,8 @@
 package src.model;
-
 public abstract class Person {
-    String name;
-    int age;
-    String Gender;
+    private String name;
+    private int age;
+    private String Gender;
 
     public Person() {
         name="Unknown";

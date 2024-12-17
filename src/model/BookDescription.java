@@ -1,13 +1,18 @@
 package src.model;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 public class BookDescription {
     private String summary;
-    private String title,Author,genre,publisher;
+    private String title;
+    private String Author;
+    private String genre;
+    private String publisher;
     private Date publicationDate;
-    private int ISBN,pages;
+    private int ISBN;
+    private int pages;
     private int ID;
     private List<String> TableOfContents;
 
@@ -93,7 +98,7 @@ public class BookDescription {
     }
 
     public List<String> getTableOfContents() {
-        return TableOfContents;
+        return Collections.unmodifiableList(TableOfContents);
     }
 
     public void setTableOfContents(List<String> tableOfContents) {
