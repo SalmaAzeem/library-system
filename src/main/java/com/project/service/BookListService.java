@@ -1,6 +1,5 @@
 package src.service;
-import com.project.repository.BookListRepository;
-import com.project.model.Book;
+import src.repository.BookListRepository;
 
 public class BookListService {
     private final BookListRepository bookListRepository;
@@ -8,13 +7,13 @@ public class BookListService {
     public BookListService(BookListRepository bookListRepository) {
         this.bookListRepository = bookListRepository;
     }
-    public Book SearchByTitle(Book book1)
+    public SearchByTitle(Book book)
     {
         for (Book book : BookListRepository) {
-            if (book.getDescription().getTitle().equalsIgnoreCase(book1.getDescription().getTitle())) {
+            if (book.getDescription().getTitle().equalsIgnoreCase(title)) {
                 return book;
             }
         }
-        return new Book();
+        return null;
     }
 }
