@@ -7,7 +7,7 @@ public class BookListService {
     public BookListService(BookListRepository bookListRepository) {
         this.bookListRepository = bookListRepository;
     }
-    public SearchByTitle(Book book)
+    public Book SearchByTitle(Book book)
     {
         for (Book book : BookListRepository) {
             if (book.getDescription().getTitle().equalsIgnoreCase(title)) {
