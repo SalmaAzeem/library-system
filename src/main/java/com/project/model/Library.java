@@ -1,10 +1,5 @@
-package src.model;
-import src.model.Librarian;
-import src.model.Book;
-import src.model.User;
-import src.model.BookDescription;
+package com.project.model;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 //Don't forget to have a creator class to initiate the Library
 public class Library {
@@ -23,7 +18,7 @@ public class Library {
          }
          return MatchedResults;
      }
-    public Boolean SearchByIsbn(int ISBN)
+    public boolean SearchByIsbn(int ISBN)
     {
         for (Book b: Books)
         {
@@ -55,7 +50,7 @@ public class Library {
          }
          else
          {
-            return null;
+            return new Book();
          }
      }
 }

@@ -1,14 +1,11 @@
-package src.model;
-
+package com.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import src.model.Book;
-
 
 public class BookList {
-    private  final List<Book> books = new ArrayList<Book>();
+    private  final List<Book> books = new ArrayList<>();
     public boolean Add(Book book)
     {
             books.add(book);
@@ -27,7 +24,7 @@ public class BookList {
                 return book;
             }
         }
-        return null;
+        return new Book();
     }
     public List<Book> SearchByAuthor(String author)
     {

@@ -1,5 +1,5 @@
 package src.service;
-import repository.BookDescriptionRepository;
+import com.project.repository.BookDescriptionRepository;
 import src.repository.*;
 public class BookDescriptionService {
     private final BookDescriptionRepository bookDescriptionRepository;

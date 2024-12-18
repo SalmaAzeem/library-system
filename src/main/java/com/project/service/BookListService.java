@@ -1,6 +1,6 @@
 package src.service;
-import src.repository.BookListRepository;
-import src.model.Book;
+import com.project.repository.BookListRepository;
+import com.project.model.Book;
 
 public class BookListService {
     private final BookListRepository bookListRepository;

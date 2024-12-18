@@ -1,21 +1,24 @@
-package src.model;
+package com.project.model;
+
+import java.util.List;
+
 public abstract class Person {
     private String name;
     private int age;
-    private String Gender;
+    private String gender;
 
-    public Person() {
+     Person() {
         name="Unknown";
         age=0;
-        Gender="Not specified";
+        gender="Not specified";
     }
 
-    public Person(String name, int age, String gender) {
+     Person(String name, int age, String gender) {
         this.name = name;
         this.age=age;
-        Gender=gender;
+        this.gender=gender;
     }
-
+    abstract List<String> ShowInfo();
     public String getName() {
         return name;
     }
@@ -33,10 +36,10 @@ public abstract class Person {
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
     public void setGender(String gender) {
-        Gender = gender;
+        this.gender = gender;
     }
 }

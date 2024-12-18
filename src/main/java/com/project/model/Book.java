@@ -1,5 +1,4 @@
-package src.model;
-import src.model.BookDescription;
+package com.project.model;
 public class Book
 {
     private int Stock;

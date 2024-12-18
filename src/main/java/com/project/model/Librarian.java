@@ -1,5 +1,7 @@
-package src.model;
-import src.model.Person;
+package com.project.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Librarian extends Person {
     private int EmployeeID;
@@ -15,5 +17,12 @@ public class Librarian extends Person {
     public Librarian(String name, int age, String gender, int employeeID) {
         super(name, age, gender);
         EmployeeID = employeeID;
+    }
+    @Override
+    public List<String> ShowInfo()
+    {
+        List<String> data = new ArrayList<>();
+        data.add(String.valueOf(EmployeeID));
+        return data;
     }
 }
