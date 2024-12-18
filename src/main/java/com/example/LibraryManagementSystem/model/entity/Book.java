@@ -1,39 +1,34 @@
 package com.example.LibraryManagementSystem.model.entity;
-public class Book
-{
-    int Stock;
-    BookDescription Description;
-    boolean Available;
-    public Book()
-    {
-        Description.setAuthor("Unknown");
-    }
-    public Book(BookDescription description) {
-        Description = description;
-    }
 
-    public int getStock() {
+import com.example.LibraryManagementSystem.model.dto.BookDescriptionDTO;
+import jakarta.persistence.*;
+
+@Table(name="books")
+@Entity
+public class Book {
+    @Column(name="stock")
+    private Integer Stock;
+    private BookDescription description;
+    @Column(name="available")
+    private Boolean Available;
+    public Book() {}
+
+    public Integer getStock() {
         return Stock;
     }
-
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         Stock = stock;
     }
-
     public BookDescription getDescription() {
-        return Description;
+        return description;
     }
-
-    public void setDescription(BookDescription description) {
-        Description = description;
+    public void setDescription(BookDescriptionDTO description) {
+        this.description = description;
     }
-
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return Available;
     }
-
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         Available = available;
     }
-
 }
