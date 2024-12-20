@@ -1,4 +1,5 @@
-package src.model;
+package com.project.model;
+
 public class User extends Person {
     private int ID;
     private int Frequency;

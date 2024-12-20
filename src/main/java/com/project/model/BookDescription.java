@@ -1,4 +1,5 @@
-package src.model;
+package com.project.model;
+
 
 import java.util.Date;
 import java.util.List;

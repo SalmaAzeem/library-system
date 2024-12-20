@@ -1,4 +1,4 @@
-package src.service;
+package com.project.service;
 
 public class BookService {
 }

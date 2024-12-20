@@ -1,4 +1,4 @@
-package src.model;
+package com.project.model;
 public class Book
 {
     int Stock;

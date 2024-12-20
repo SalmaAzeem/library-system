@@ -1,4 +1,5 @@
-package src.model;
+package com.project.model;
+
 
 public abstract class Person {
     String name;

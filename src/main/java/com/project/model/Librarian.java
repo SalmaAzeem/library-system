@@ -1,4 +1,5 @@
-package src.model;
+package com.project.model;
+
 
 
 public class Librarian extends Person {

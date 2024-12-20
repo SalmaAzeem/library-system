@@ -1,10 +1,11 @@
-package src.model;
+package com.project.model;
+
 
 import java.util.ArrayList;
 import java.util.List;
 //Don't forget to have a creator class to initiate the Library
 public class Library {
-     Librarian Clark;
+     Librarian Clerk;
      //This could be modified to have a BookList Class so deletion and insertion will be through
      ArrayList<Book> Books;
      ArrayList<User> Clients;
