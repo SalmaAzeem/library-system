@@ -1,4 +1,9 @@
+<<<<<<< HEAD:src/main/java/com/example/LibraryManagementSystem/model/entity/Person.java
 package com.example.LibraryManagementSystem.model.entity;
+=======
+package com.project.model;
+
+>>>>>>> a5b9f862638cacc077bd88990dc864143c4563f3:src/main/java/com/project/model/Person.java
 
 public abstract class Person {
     String name;

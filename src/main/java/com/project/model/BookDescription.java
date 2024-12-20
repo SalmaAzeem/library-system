@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 package com.example.LibraryManagementSystem.model.entity;
 
 import jakarta.persistence.*;
+=======
+package com.project.model;
+
+>>>>>>> a5b9f862638cacc077bd88990dc864143c4563f3
 
 import java.util.Date;
 import java.util.List;

@@ -1,6 +1,11 @@
+<<<<<<< HEAD:src/main/java/com/example/LibraryManagementSystem/service/BookListService.java
 package com.example.LibraryManagementSystem.service;
 
 import com.example.LibraryManagementSystem.model.entity.Book;
+=======
+package com.project.model;
+
+>>>>>>> a5b9f862638cacc077bd88990dc864143c4563f3:src/main/java/com/project/model/BookList.java
 
 import java.util.ArrayList;
 import java.util.List;
