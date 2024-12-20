@@ -2,10 +2,13 @@ package com.example.LibraryManagementSystem.model.entity;
 
 import com.example.LibraryManagementSystem.model.dto.BookDescriptionDTO;
 import jakarta.persistence.*;
+import org.hibernate.service.spi.InjectService;
 
 @Table(name="books")
 @Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="stock")
     private Integer Stock;
     private BookDescriptionDTO description;
