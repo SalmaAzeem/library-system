@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Book {
     @Column(name="stock")
     private Integer Stock;
-    private BookDescription description;
+    private BookDescriptionDTO description;
     @Column(name="available")
     private Boolean Available;
     public Book() {}
@@ -19,7 +19,7 @@ public class Book {
     public void setStock(Integer stock) {
         Stock = stock;
     }
-    public BookDescription getDescription() {
+    public BookDescriptionDTO getDescription() {
         return description;
     }
     public void setDescription(BookDescriptionDTO description) {
