@@ -2,14 +2,28 @@ package com.example.LibraryManagementSystem.model.entity;
 
 import jakarta.persistence.*;
 
-@Table(name="librarian")
 @Entity
+@Table(name = "librarian")
 public class Librarian extends Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer EmployeeID;
 
-    public Librarian() {}
-    public Integer getEmployeeID() { return EmployeeID; }
-    public void setEmployeeID(Integer EmployeeID) { this.EmployeeID = EmployeeID; }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer employeeID;
+
+    public Librarian() {
+        super();
+    }
+
+    public Librarian(String name, int age, String gender) {
+        super(name, age, gender);
+    }
+
+    public Integer getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(Integer employeeID) {
+        this.employeeID = employeeID;
+    }
 }
+

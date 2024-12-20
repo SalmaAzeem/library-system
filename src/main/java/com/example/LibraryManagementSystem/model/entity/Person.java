@@ -1,9 +1,12 @@
 package com.example.LibraryManagementSystem.model.entity;
 
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Person {
-    String name;
-    int age;
-    String Gender;
+    private String name;
+    private int age;
+    private String Gender;
 
     public Person() {
         name="Unknown";

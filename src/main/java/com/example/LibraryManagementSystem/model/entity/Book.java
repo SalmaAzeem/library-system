@@ -1,37 +1,60 @@
 package com.example.LibraryManagementSystem.model.entity;
 
-import com.example.LibraryManagementSystem.model.dto.BookDescriptionDTO;
+import com.example.LibraryManagementSystem.model.entity.BookDescription;
 import jakarta.persistence.*;
 import org.hibernate.service.spi.InjectService;
 
-@Table(name="books")
 @Entity
+@Table(name = "books")
 public class Book {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="stock")
-    private Integer Stock;
-    private BookDescriptionDTO description;
-    @Column(name="available")
-    private Boolean Available;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ISBN")
+    private Integer ISBN;
+
+    @Column(name = "stock")
+    private Integer stock;
+
+    @Transient
+    private BookDescription description;
+
+    @Column(name = "available")
+    private Boolean available;
+
     public Book() {}
 
+    public Integer getId() {
+        return ISBN;
+    }
+
+    public void setId(Integer id) {
+        this.ISBN = id;
+    }
+
     public Integer getStock() {
-        return Stock;
+        return stock;
     }
+
     public void setStock(Integer stock) {
-        Stock = stock;
+        this.stock = stock;
     }
-    public BookDescriptionDTO getDescription() {
+
+    public BookDescription getDescription() {
         return description;
     }
-    public void setDescription(BookDescriptionDTO description) {
+
+    public void setDescription(BookDescription description) {
         this.description = description;
     }
-    public Boolean isAvailable() {
-        return Available;
+
+    public Boolean getAvailable() {
+        return available;
     }
+
     public void setAvailable(Boolean available) {
-        Available = available;
+        this.available = available;
     }
+}
+
 }

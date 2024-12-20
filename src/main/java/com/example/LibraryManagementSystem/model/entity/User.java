@@ -12,8 +12,12 @@ public class User extends Person {
     private Integer Frequency;
 //    private BookList BorrowedList = new BookList();
 //    private BookList readingList;
-    public User() {}
+    public User() { super();}
 
+    public User(String name, int age, String gender, Integer frequency) {
+        super(name, age, gender);
+        this.Frequency = frequency;
+    }
     public Integer getID() { return ID; }
     public void setID(Integer ID) { this.ID = ID; }
     public Integer getFrequency() { return Frequency; }
