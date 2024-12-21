@@ -1,34 +1,19 @@
-package com.example.LibraryManagementSystem.model.entity;
-
-import jakarta.persistence.*;
+package com.example.LibraryManagementSystem.model.dto;
 
 import java.util.Date;
-import java.util.List;
 
-@Table(name="book_description")
-@Entity
-public class BookDescription {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ISBN;
-    @Column(name="summary")
-    private String summary;
-    @Column(name="title")
-    private String title;
-    @Column(name="author")
-    private String Author;
-    @Column(name="genre")
-    private String genre;
-    @Column(name="publisher")
-    private String publisher;
-    @Column(name="publication_date")
+public class BookDescriptionDTO {
+    private String summary, title, genre, publisher, Author;
+    private Integer ISBN, pages;
     private Date publicationDate;
-    @Column(name="pages")
-    private Integer pages;
-
-    private List<String> TableOfContents;
-    public BookDescription() {}
-
+    public BookDescriptionDTO(Integer ISBN, String summary,String title, String genre,String publisher, String Author, Date publicationDate, Integer pages) {
+        this.summary = summary;
+        this.title=title;
+        this.genre=genre;
+        this.publisher=publisher;
+        this.ISBN=ISBN;
+        this.pages=pages;
+    }
     public String getSummary() {
         return summary;
     }
@@ -77,11 +62,4 @@ public class BookDescription {
     public void setPages(Integer pages) {
         this.pages = pages;
     }
-    public List<String> getTableOfContents() {
-        return TableOfContents;
-    }
-    public void setTableOfContents(List<String> tableOfContents) {
-        TableOfContents = tableOfContents;
-    }
 }
-
