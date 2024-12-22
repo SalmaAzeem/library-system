@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class BookListService {
+public class BorrowedBookService {
     private  final List<Book> books = new ArrayList<Book>();
     public boolean Add(Book book)
     {
