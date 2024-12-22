@@ -1,6 +1,10 @@
-package com.example.LibraryManagementSystem.model.dto;
+package com.example.librarymanagementsystem.model.dto;
 
 import java.time.LocalDate;
+
+/**
+ * A DTO Class for the Book Description.
+ */
 
 public class BookDescriptionDTO {
     private String summary, title, genre, publisher, Author;

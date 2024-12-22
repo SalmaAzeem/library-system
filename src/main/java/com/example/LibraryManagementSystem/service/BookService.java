@@ -1,4 +1,4 @@
-package com.example.LibraryManagementSystem.service;
+package com.example.librarymanagementsystem.service;
 
 public class BookService {
 }

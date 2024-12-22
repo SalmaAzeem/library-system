@@ -1,4 +1,4 @@
-package com.example.LibraryManagementSystem.model.dto;
+package com.example.librarymanagementsystem.model.dto;
 
 public class BookDTO {
     private Integer stock;

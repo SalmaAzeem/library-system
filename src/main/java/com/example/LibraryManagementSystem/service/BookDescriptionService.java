@@ -1,5 +1,5 @@
-package com.example.LibraryManagementSystem.service;
-import com.example.LibraryManagementSystem.model.repository.*;
+package com.example.librarymanagementsystem.service;
+import com.example.librarymanagementsystem.model.repository.*;
 
 public class BookDescriptionService {
 

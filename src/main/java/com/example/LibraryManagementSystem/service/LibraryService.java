@@ -1,9 +1,9 @@
-package com.example.LibraryManagementSystem.service;
+package com.example.librarymanagementsystem.service;
 
-import com.example.LibraryManagementSystem.model.dto.BookDescriptionDTO;
-import com.example.LibraryManagementSystem.model.entity.Book;
-import com.example.LibraryManagementSystem.model.entity.Librarian;
-import com.example.LibraryManagementSystem.model.entity.User;
+import com.example.librarymanagementsystem.model.dto.BookDescriptionDTO;
+import com.example.librarymanagementsystem.model.entity.Book;
+import com.example.librarymanagementsystem.model.entity.Librarian;
+import com.example.librarymanagementsystem.model.entity.User;
 
 import java.util.ArrayList;
 import java.util.Date;
