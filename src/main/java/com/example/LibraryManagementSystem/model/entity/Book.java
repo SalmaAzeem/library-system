@@ -16,7 +16,7 @@ public class Book {
     private Integer stock;
 
     @Transient
-    private BookDescription description;
+    private BookDescriptionDTO description;
 
     @Column(name = "available")
     private Boolean available;
@@ -39,7 +39,7 @@ public class Book {
         this.stock = stock;
     }
 
-    public BookDescription getDescription() {
+    public BookDescriptionDTO getDescription() {
         return description;
     }
 
@@ -54,6 +54,4 @@ public class Book {
     public void setAvailable(Boolean available) {
         this.available = available;
     }
-}
-
 }
