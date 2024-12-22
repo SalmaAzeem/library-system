@@ -10,7 +10,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ISBN")
-    private Integer ISBN;
+    private String ISBN;
 
     @Column(name = "stock")
     private Integer stock;

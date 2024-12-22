@@ -10,7 +10,7 @@ public class BorrowedBook {
 
     @Id
     @Column(name = "book_id")
-    private Integer ISBN;
+    private String ISBN;
 
     @Id
     @Column(name = "user_id")
