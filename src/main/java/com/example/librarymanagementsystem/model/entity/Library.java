@@ -2,8 +2,6 @@ package com.example.librarymanagementsystem.model.entity;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
 @Table(name="library")
 @Entity
 public class Library {
