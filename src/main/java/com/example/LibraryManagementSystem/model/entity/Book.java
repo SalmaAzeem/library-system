@@ -1,8 +1,7 @@
 package com.example.LibraryManagementSystem.model.entity;
 
-import com.example.LibraryManagementSystem.model.entity.BookDescription;
+import com.example.LibraryManagementSystem.model.dto.BookDescriptionDTO;
 import jakarta.persistence.*;
-import org.hibernate.service.spi.InjectService;
 
 @Entity
 @Table(name = "books")
@@ -44,7 +43,7 @@ public class Book {
         return description;
     }
 
-    public void setDescription(BookDescription description) {
+    public void setDescription(BookDescriptionDTO description) {
         this.description = description;
     }
 

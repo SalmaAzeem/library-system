@@ -1,12 +1,12 @@
 package com.example.LibraryManagementSystem.model.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class BookDescriptionDTO {
     private String summary, title, genre, publisher, Author;
     private Integer ISBN, pages;
-    private Date publicationDate;
-    public BookDescriptionDTO(Integer ISBN, String summary,String title, String genre,String publisher, String Author, Date publicationDate, Integer pages) {
+    private LocalDate publicationDate;
+    public BookDescriptionDTO(Integer ISBN, String summary,String title, String genre,String publisher, String Author, LocalDate publicationDate, Integer pages) {
         this.summary = summary;
         this.title=title;
         this.genre=genre;
@@ -44,10 +44,10 @@ public class BookDescriptionDTO {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    public Date getPublicationDate() {
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
     public Integer getISBN() {

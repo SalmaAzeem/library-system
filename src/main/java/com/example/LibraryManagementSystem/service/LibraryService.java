@@ -8,6 +8,7 @@ import com.example.LibraryManagementSystem.model.entity.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
 
 //Don't forget to have a creator class to initiate the Library
 public class LibraryService {
@@ -34,7 +35,7 @@ public class LibraryService {
         }
         return false;
     }
-    public boolean AddBook(String summary, String title, String genre, String publisher, String Author, Date publicationDate, int ISBN, int pages)
+    public boolean AddBook(String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int ISBN, int pages)
     {
         Book newBook=CreateBook(summary, title, genre, publisher,Author, publicationDate, ISBN, pages);
         if(newBook != null) {
@@ -44,7 +45,7 @@ public class LibraryService {
         else return false;
     }
     //Should be modified to check that the current used is a librarian and not a normal user, Also which class should be responsible for creation
-    public Book CreateBook(String summary, String title, String genre, String publisher, String Author, Date publicationDate, int ISBN, int pages)
+    public Book CreateBook(String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int ISBN, int pages)
     {
         if(!SearchByIsbn(ISBN)) {
             BookDescriptionDTO newBookDescription = new BookDescriptionDTO(ISBN, summary, title, genre, publisher,Author, publicationDate, pages);
