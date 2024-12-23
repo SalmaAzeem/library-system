@@ -7,10 +7,10 @@ import java.time.LocalDate;
  */
 
 public class BookDescriptionDTO {
-    private String summary, title, genre, publisher, Author;
-    private Integer ISBN, pages;
+    private String summary, title, genre, publisher, Author, ISBN;
+    private Integer pages;
     private LocalDate publicationDate;
-    public BookDescriptionDTO(Integer ISBN, String summary,String title, String genre,String publisher, String Author, LocalDate publicationDate, Integer pages) {
+    public BookDescriptionDTO(String ISBN, String summary,String title, String genre,String publisher, String Author, LocalDate publicationDate, Integer pages) {
         this.summary = summary;
         this.title=title;
         this.genre=genre;

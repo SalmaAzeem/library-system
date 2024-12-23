@@ -10,7 +10,7 @@ public class BorrowedBook {
 
     @Id
     @Column(name = "book_id")
-    private Integer ISBN;
+    private String ISBN;
 
     @Id
     @Column(name = "user_id")
@@ -23,6 +23,9 @@ public class BorrowedBook {
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
+
+    @Column(name = "fine", columnDefinition = "DOUBLE DEFAULT 0")
+    private double fine;
 
     // Constructors, Getters, and Setters
     public BorrowedBook() {}
@@ -64,6 +67,13 @@ public class BorrowedBook {
         this.user = user;
     }
 
+    public double getFine() {
+        return fine;
+    }
+
+    public void setFine(double fine) {
+        this.fine = fine;
+    }
     // Composite Key Class
     public static class BorrowedBookId implements Serializable {
         private Integer ISBN;

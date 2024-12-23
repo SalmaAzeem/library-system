@@ -10,7 +10,7 @@ import java.util.List;
 public class BookDescription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ISBN;
+    private String ISBN;
     @Column(name="summary")
     private String summary;
     @Column(name="title")
