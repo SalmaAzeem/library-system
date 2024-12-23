@@ -24,50 +24,23 @@
         <h2>Welcome</h2>
     </section>
 <!-- lesa it is not final -->
-    <section class="search-bar">
-        <h3>Find Your Next Read</h3>
-        <form action="/books/search" method="get">
-            <input type="text" name="query" placeholder="Search by title, author, or ISBN">
-            <button type="submit">Search</button>
-        </form>
-    </section>
 
     <section class="highlights">
-        <div class="popular-books">
-            <h3>Popular Books</h3>
+        <h1>Welcome to the Library</h1>
+        <h2>Top Picks</h2>
+        <div class="book-list">
             <ul>
-                <li th:each="book : ${popularBooks}">
-                    <span th:text="${book.title}"></span> by <span th:text="${book.author}"></span>
+                <li th:each="book : ${books}">
+                    <div class="book-card">
+                        <h3>Book</h3>
+<!--                        <p><strong>Author:</strong> <span th:text="${book.author}">Author Name</span></p>-->
+                        <p><strong>ISBN:</strong> <span th:text="${book.stock}">12345</span></p>
+<!--                        <p><strong>Publisher:</strong> <span th:text="${book.publisher}">Publisher Name</span></p>-->
+<!--                        <p><strong>Year:</strong> <span th:text="${book.publicationYear}">2023</span></p>-->
+                    </div>
                 </li>
             </ul>
         </div>
-
-        <div class="recently-added">
-            <h3>Recently Added Books</h3>
-            <ul>
-                <li th:each="book : ${recentBooks}">
-                    <span th:text="${book.title}"></span> by <span th:text="${book.author}"></span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="reminders" th:if="${borrowedBooks.size() > 0}">
-        <h3>Your Borrowed Books</h3>
-        <ul>
-            <li th:each="borrowedBook : ${borrowedBooks}">
-                <span th:text="${borrowedBook.title}"></span> - Due: <span th:text="${borrowedBook.dueDate}"></span>
-            </li>
-        </ul>
-    </section>
-
-    <section class="librarian-actions" th:if="${user.role == 'LIBRARIAN'}">
-        <h3>Librarian Actions</h3>
-        <ul>
-            <li><a href="/books/add">Add New Book</a></li>
-            <li><a href="/borrowed/manage">Manage Borrowed Books</a></li>
-            <li><a href="/users/manage">Manage Users</a></li>
-        </ul>
     </section>
 </main>
 <footer>

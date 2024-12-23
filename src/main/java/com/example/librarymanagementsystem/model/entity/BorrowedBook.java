@@ -17,6 +17,10 @@ public class BorrowedBook {
     @Column(name = "user_id", nullable = false)
     private Integer userID;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
+
     @Column(name = "fine", columnDefinition = "DOUBLE DEFAULT 0")
     private double fine;
 
@@ -43,6 +47,14 @@ public class BorrowedBook {
 
     public void setUserID(Integer userID) {
         this.userID = userID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public double getFine() {

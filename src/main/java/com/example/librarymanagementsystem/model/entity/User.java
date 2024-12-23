@@ -17,7 +17,7 @@ public class User extends Person {
     private int Frequency;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BorrowedBookDTO> borrowedBooks = new ArrayList<>();
+    private List<BorrowedBook> borrowedBooks = new ArrayList<>();
     public User() { super();}
 
     public User(String name, int age, String gender, int frequency) {
@@ -28,6 +28,16 @@ public class User extends Person {
     public void setID(Integer ID) { this.ID = ID; }
     public int getFrequency() { return Frequency; }
     public void setFrequency(int Frequency) { this.Frequency = Frequency; }
-    public List<BorrowedBookDTO> getBorrowedBooks() { return borrowedBooks; }
-    public void setBorrowedBooks(List<BorrowedBookDTO> borrowedBooks) { this.borrowedBooks = borrowedBooks; }
+    public List<BorrowedBook> getBorrowedBooks() { return borrowedBooks; }
+    public void setBorrowedBooks(List<BorrowedBook> borrowedBooks) { this.borrowedBooks = borrowedBooks; }
+    public void addBorrowedBook(BorrowedBook borrowedBook) {
+        borrowedBooks.add(borrowedBook);
+        borrowedBook.setUser(this);
+    }
+
+    public void removeBorrowedBook(BorrowedBook borrowedBook) {
+        borrowedBooks.remove(borrowedBook);
+        borrowedBook.setUser(null);
+    }
+
 }

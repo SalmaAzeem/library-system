@@ -12,12 +12,13 @@ import org.springframework.stereotype.Service;
 public class BorrowService {
     @Autowired
     private BorrowedBookRepo borrowedBookRepo;
+
     public void borrowBook(User user, Book book) {
         BorrowedBook borrowedBook = new BorrowedBook(book.getId(), user.getID());
-        borrowedBook.setFine(0.0);
+        borrowedBook.setUser(user);
         borrowedBookRepo.save(borrowedBook);
-        if (user.getBorrowedBooks() != null) {
-            user.getBorrowedBooks().add(BorrowedBookDTO.toDto(borrowedBook));
-        }
+
+        user.getBorrowedBooks().add(borrowedBook);
     }
+
 }
