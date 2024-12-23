@@ -16,6 +16,11 @@ public class BorrowedBookDTO {
         this.fine = fine;
     }
 
+    public BorrowedBookDTO(String ISBN, Integer userID) {
+        this.ISBN = ISBN;
+        this.userID = userID;
+    }
+
     public static BorrowedBookDTO toDto(BorrowedBook entity) {
         return new BorrowedBookDTO(entity.getISBN(), entity.getUserID(), entity.getFine());
     }
