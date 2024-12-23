@@ -65,10 +65,10 @@ public class BookDescription {
     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
-    public Integer getISBN() {
+    public String getISBN() {
         return ISBN;
     }
-    public void setISBN(Integer ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
     public Integer getPages() {

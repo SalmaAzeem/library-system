@@ -25,16 +25,16 @@ public class LibraryService {
         }
         return MatchedResults;
     }
-    public Boolean SearchByIsbn(int ISBN)
+    public Boolean SearchByIsbn(String ISBN)
     {
         for (Book b: Books)
         {
-            if(b.getDescription().getISBN()==ISBN)
+            if(b.getDescription().getISBN().equals(ISBN))
                 return true;
         }
         return false;
     }
-    public boolean AddBook(String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int ISBN, int pages)
+    public boolean AddBook(String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, String ISBN, int pages)
     {
         Book newBook=CreateBook(summary, title, genre, publisher,Author, publicationDate, ISBN, pages);
         if(newBook != null) {
@@ -44,7 +44,7 @@ public class LibraryService {
         else return false;
     }
     //Should be modified to check that the current used is a librarian and not a normal user, Also which class should be responsible for creation
-    public Book CreateBook(String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int ISBN, int pages)
+    public Book CreateBook(String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, String ISBN, int pages)
     {
         if(!SearchByIsbn(ISBN)) {
             BookDescriptionDTO newBookDescription = new BookDescriptionDTO(ISBN, summary, title, genre, publisher,Author, publicationDate, pages);

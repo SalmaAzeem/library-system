@@ -6,6 +6,7 @@ import com.example.librarymanagementsystem.model.entity.Book;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BorrowedBookService {
@@ -18,8 +19,8 @@ public class BorrowedBookService {
     }
     public boolean Delete(Book book)
     {
-        int idToRemove=book.getDescription().getISBN();
-        return ( books.removeIf(b -> b.getDescription().getISBN() == idToRemove));
+        String idToRemove=book.getDescription().getISBN();
+        return ( books.removeIf(b -> Objects.equals(b.getDescription().getISBN(), idToRemove)));
     }
     public Book SearchByTitle(String title)
     {

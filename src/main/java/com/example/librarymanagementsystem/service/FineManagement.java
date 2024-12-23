@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 public class FineManagement {
     private final BorrowedBookRepo BorrowedRepo;
 
-        public FineManagement(BorrowedBookRepo Repo) {
+    public FineManagement(BorrowedBookRepo Repo) {
         this.BorrowedRepo = Repo;
     }
 
-    public CalculateFIne(int UserID, String ISBN){
+    public void CalculateFIne(int UserID, String ISBN){
 
     }
 }
