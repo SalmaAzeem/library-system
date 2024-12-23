@@ -1,6 +1,11 @@
 package com.example.librarymanagementsystem.model.entity;
 
+import com.example.librarymanagementsystem.model.dto.BookDTO;
+import com.example.librarymanagementsystem.model.dto.BorrowedBookDTO;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name="users")
 @Entity
@@ -10,8 +15,9 @@ public class User extends Person {
     private Integer ID;
     @Column(name="frequency")
     private int Frequency;
-//    private BookList BorrowedList = new BookList();
-//    private BookList readingList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BorrowedBookDTO> borrowedBooks = new ArrayList<>();
     public User() { super();}
 
     public User(String name, int age, String gender, int frequency) {
@@ -22,4 +28,6 @@ public class User extends Person {
     public void setID(Integer ID) { this.ID = ID; }
     public int getFrequency() { return Frequency; }
     public void setFrequency(int Frequency) { this.Frequency = Frequency; }
+    public List<BorrowedBookDTO> getBorrowedBooks() { return borrowedBooks; }
+    public void setBorrowedBooks(List<BorrowedBookDTO> borrowedBooks) { this.borrowedBooks = borrowedBooks; }
 }
