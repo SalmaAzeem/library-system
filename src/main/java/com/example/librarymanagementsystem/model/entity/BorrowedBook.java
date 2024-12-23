@@ -2,6 +2,7 @@ package com.example.librarymanagementsystem.model.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Table(name = "borrowed_book")
 @Entity
@@ -9,25 +10,17 @@ import java.io.Serializable;
 public class BorrowedBook {
 
     @Id
-    @Column(name = "book_id")
+    @Column(name = "book_id", nullable = false)
     private String ISBN;
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private Integer userID;
-
-    @ManyToOne
-    @JoinColumn(name = "book_id", insertable = false, updatable = false)
-    private Book book;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
 
     @Column(name = "fine", columnDefinition = "DOUBLE DEFAULT 0")
     private double fine;
 
-    // Constructors, Getters, and Setters
+    // Constructors
     public BorrowedBook() {}
 
     public BorrowedBook(String ISBN, Integer userID) {
@@ -35,6 +28,7 @@ public class BorrowedBook {
         this.userID = userID;
     }
 
+    // Getters and Setters
     public String getISBN() {
         return ISBN;
     }
@@ -51,22 +45,6 @@ public class BorrowedBook {
         this.userID = userID;
     }
 
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public double getFine() {
         return fine;
     }
@@ -74,6 +52,7 @@ public class BorrowedBook {
     public void setFine(double fine) {
         this.fine = fine;
     }
+
     // Composite Key Class
     public static class BorrowedBookId implements Serializable {
         private String ISBN;
@@ -89,14 +68,14 @@ public class BorrowedBook {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (!(o instanceof BorrowedBookId)) return false;
             BorrowedBookId that = (BorrowedBookId) o;
-            return ISBN.equals(that.ISBN) && userID == that.userID;
+            return Objects.equals(ISBN, that.ISBN) && Objects.equals(userID, that.userID);
         }
 
         @Override
         public int hashCode() {
-            return ISBN.hashCode() + userID;
+            return Objects.hash(ISBN, userID);
         }
     }
 }
