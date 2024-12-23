@@ -2,6 +2,8 @@ package com.example.librarymanagementsystem.model.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @Table(name = "borrowed_book")
@@ -20,12 +22,24 @@ public class BorrowedBook {
     @Column(name = "fine", columnDefinition = "DOUBLE DEFAULT 0")
     private double fine;
 
+    @Column(name = "borrow_date", nullable = false, updatable = false)
+    private LocalDate borrowDate;
+
+    @Column(name = "due_date", nullable = false)
+    private LocalDate dueDate;
+
     // Constructors
-    public BorrowedBook() {}
+    public BorrowedBook() {
+        // Initialize borrowDate and dueDate automatically
+        this.borrowDate = LocalDate.now();
+        this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS);
+    }
 
     public BorrowedBook(String ISBN, Integer userID) {
         this.ISBN = ISBN;
         this.userID = userID;
+        this.borrowDate = LocalDate.now();
+        this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS);
     }
 
     // Getters and Setters
@@ -51,6 +65,18 @@ public class BorrowedBook {
 
     public void setFine(double fine) {
         this.fine = fine;
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 
     // Composite Key Class
