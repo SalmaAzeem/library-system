@@ -5,15 +5,14 @@ import java.time.temporal.ChronoUnit;
 
 import com.example.librarymanagementsystem.model.entity.BorrowedBook;
 import com.example.librarymanagementsystem.model.repository.BorrowedBookRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FineManagement {
-    private final BorrowedBookRepo BorrowedRepo;
+    @Autowired
+    private BorrowedBookRepo BorrowedRepo;
 
-    public FineManagement(BorrowedBookRepo Repo) {
-        this.BorrowedRepo = Repo;
-    }
 
     public double CalculateFIne(int UserID, String ISBN){
         BorrowedBook.BorrowedBookId borrowedBookId = new BorrowedBook.BorrowedBookId(ISBN, UserID);
