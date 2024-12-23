@@ -2,6 +2,7 @@ package com.example.librarymanagementsystem.model.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class BookDescription {
     @Column(name="publisher")
     private String publisher;
     @Column(name="publication_date")
-    private Date publicationDate;
+    private LocalDate publicationDate;
     @Column(name="pages")
     private int pages;
 
@@ -59,10 +60,10 @@ public class BookDescription {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    public Date getPublicationDate() {
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
     public String getISBN() {
