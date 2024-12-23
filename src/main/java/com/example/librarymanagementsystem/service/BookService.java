@@ -38,21 +38,21 @@ public class BookService {
 
     // Fetch a book by ISBN
     public BookDTO getBookByISBN(String ISBN) {
-        Book book = bookRepository.findById(ISBN).orElseThrow(() -> new IllegalArgumentException("Book not found with ISBN: " + ISBN));
+        Book book = bookRepository.findById(Integer.valueOf(ISBN)).orElseThrow(() -> new IllegalArgumentException("Book not found with ISBN: " + ISBN));
         return BookDTO.toDto(book);
     }
 
     // Delete a book by ISBN
     public void deleteBook(String ISBN) {
-        if (!bookRepository.existsById(ISBN)) {
+        if (!bookRepository.existsById(Integer.valueOf(ISBN))) {
             throw new IllegalArgumentException("Book not found with ISBN: " + ISBN);
         }
-        bookRepository.deleteById(ISBN);
+        bookRepository.deleteById(Integer.valueOf(ISBN));
     }
 
     // Update the stock of a book
     public BookDTO updateStock(String ISBN, int newStock) {
-        Book book = bookRepository.findById(ISBN).orElseThrow(() -> new IllegalArgumentException("Book not found with ISBN: " + ISBN));
+        Book book = bookRepository.findById(Integer.valueOf(ISBN)).orElseThrow(() -> new IllegalArgumentException("Book not found with ISBN: " + ISBN));
         book.setStock(newStock);
         book.setAvailable(newStock > 0); // Update availability based on stock
         Book updatedBook = bookRepository.save(book);
