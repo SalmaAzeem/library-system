@@ -23,15 +23,6 @@ public class BorrowedBookDTO {
         this.dueDate = dueDate;
     }
 
-<<<<<<< Updated upstream
-    public BorrowedBookDTO(String ISBN, Integer userID) {
-        this.ISBN = ISBN;
-        this.userID = userID;
-    }
-
-=======
-    // Static Method to Map Entity to DTO
->>>>>>> Stashed changes
     public static BorrowedBookDTO toDto(BorrowedBook entity) {
         return new BorrowedBookDTO(
             entity.getISBN(),
