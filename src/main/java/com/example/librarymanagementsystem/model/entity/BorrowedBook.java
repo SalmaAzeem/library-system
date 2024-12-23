@@ -31,7 +31,7 @@ public class BorrowedBook {
     private LocalDate dueDate;
 
     // Constructors
-    public BorrowedBook() {
+    public BorrowedBook(Integer id, Integer userID) {
         // Initialize borrowDate and dueDate automatically
         this.borrowDate = LocalDate.now();
         this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS);
