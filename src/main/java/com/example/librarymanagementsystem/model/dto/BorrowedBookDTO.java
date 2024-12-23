@@ -2,27 +2,35 @@ package com.example.librarymanagementsystem.model.dto;
 
 import com.example.librarymanagementsystem.model.entity.BorrowedBook;
 
+import java.time.LocalDate;
+
 public class BorrowedBookDTO {
     private String ISBN;
     private Integer userID;
     private double fine;
+    private LocalDate borrowDate;
+    private LocalDate dueDate;
 
     // Default Constructor
     public BorrowedBookDTO() {}
 
-    public BorrowedBookDTO(String ISBN, Integer userID, double fine) {
+    // Parameterized Constructor
+    public BorrowedBookDTO(String ISBN, Integer userID, double fine, LocalDate borrowDate, LocalDate dueDate) {
         this.ISBN = ISBN;
         this.userID = userID;
         this.fine = fine;
-    }
-
-    public BorrowedBookDTO(String ISBN, Integer userID) {
-        this.ISBN = ISBN;
-        this.userID = userID;
+        this.borrowDate = borrowDate;
+        this.dueDate = dueDate;
     }
 
     public static BorrowedBookDTO toDto(BorrowedBook entity) {
-        return new BorrowedBookDTO(entity.getISBN(), entity.getUserID(), entity.getFine());
+        return new BorrowedBookDTO(
+            entity.getISBN(),
+            entity.getUserID(),
+            entity.getFine(),
+            entity.getBorrowDate(),
+            entity.getDueDate()
+        );
     }
 
     // Getters and Setters
@@ -48,5 +56,21 @@ public class BorrowedBookDTO {
 
     public void setFine(double fine) {
         this.fine = fine;
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 }
