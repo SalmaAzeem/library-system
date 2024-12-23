@@ -23,8 +23,6 @@ public class BorrowedBook {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @Column(name = "fine", columnDefinition = "DOUBLE DEFAULT 0")
-    private double fine;
 
     @Column(name = "borrow_date", nullable = false, updatable = false)
     private LocalDate borrowDate;
@@ -71,13 +69,6 @@ public class BorrowedBook {
         this.user = user;
     }
 
-    public double getFine() {
-        return fine;
-    }
-
-    public void setFine(double fine) {
-        this.fine = fine;
-    }
 
     public LocalDate getBorrowDate() {
         return borrowDate;

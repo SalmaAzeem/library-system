@@ -7,7 +7,6 @@ import java.time.LocalDate;
 public class BorrowedBookDTO {
     private String ISBN;
     private Integer userID;
-    private double fine;
     private LocalDate borrowDate;
     private LocalDate dueDate;
 
@@ -15,10 +14,9 @@ public class BorrowedBookDTO {
     public BorrowedBookDTO() {}
 
     // Parameterized Constructor
-    public BorrowedBookDTO(String ISBN, Integer userID, double fine, LocalDate borrowDate, LocalDate dueDate) {
+    public BorrowedBookDTO(String ISBN, Integer userID, LocalDate borrowDate, LocalDate dueDate) {
         this.ISBN = ISBN;
         this.userID = userID;
-        this.fine = fine;
         this.borrowDate = borrowDate;
         this.dueDate = dueDate;
     }
@@ -27,7 +25,6 @@ public class BorrowedBookDTO {
         return new BorrowedBookDTO(
             entity.getISBN(),
             entity.getUserID(),
-            entity.getFine(),
             entity.getBorrowDate(),
             entity.getDueDate()
         );
@@ -48,14 +45,6 @@ public class BorrowedBookDTO {
 
     public void setUserID(Integer userID) {
         this.userID = userID;
-    }
-
-    public double getFine() {
-        return fine;
-    }
-
-    public void setFine(double fine) {
-        this.fine = fine;
     }
 
     public LocalDate getBorrowDate() {
