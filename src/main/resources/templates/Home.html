@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Home</title>
+</head>
+<body>
+<header>
+    <div>
+        <h1>Library Management System</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/books/search">Search Books</a></li>
+            <li><a href="/borrowed">Borrowed Books</a></li>
+            <li><a href="/dashboard">User Dashboard</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section>
+        <h2>Welcome</h2>
+    </section>
+<!-- lesa it is not final -->
+    <section class="search-bar">
+        <h3>Find Your Next Read</h3>
+        <form action="/books/search" method="get">
+            <input type="text" name="query" placeholder="Search by title, author, or ISBN">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section class="highlights">
+        <div class="popular-books">
+            <h3>Popular Books</h3>
+            <ul>
+                <li th:each="book : ${popularBooks}">
+                    <span th:text="${book.title}"></span> by <span th:text="${book.author}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="recently-added">
+            <h3>Recently Added Books</h3>
+            <ul>
+                <li th:each="book : ${recentBooks}">
+                    <span th:text="${book.title}"></span> by <span th:text="${book.author}"></span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="reminders" th:if="${borrowedBooks.size() > 0}">
+        <h3>Your Borrowed Books</h3>
+        <ul>
+            <li th:each="borrowedBook : ${borrowedBooks}">
+                <span th:text="${borrowedBook.title}"></span> - Due: <span th:text="${borrowedBook.dueDate}"></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="librarian-actions" th:if="${user.role == 'LIBRARIAN'}">
+        <h3>Librarian Actions</h3>
+        <ul>
+            <li><a href="/books/add">Add New Book</a></li>
+            <li><a href="/borrowed/manage">Manage Borrowed Books</a></li>
+            <li><a href="/users/manage">Manage Users</a></li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <p>Contact us at info@library.com | Library Hours: 9 AM - 8 PM</p>
+    <p>&copy; 2024 Library Management System</p>
+</footer>
+</body>
+</html>
