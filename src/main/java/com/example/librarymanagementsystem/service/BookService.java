@@ -12,13 +12,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class BookService {
-
-    private final BookRepo bookRepository;
-
     @Autowired
-    public BookService(BookRepo bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    private BookRepo bookRepository;
+
 
     // Create or update a book
     public BookDTO saveOrUpdateBook(BookDTO bookDTO) {
