@@ -23,11 +23,11 @@ public class Book {
 
     public Book() {}
 
-    public Integer getId() {
+    public String getId() {
         return ISBN;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.ISBN = id;
     }
 

@@ -25,21 +25,21 @@ public class BorrowedBook {
     private User user;
 
     @Column(name = "fine", columnDefinition = "DOUBLE DEFAULT 0")
-    private double fine;
+    private Double fine;
 
     // Constructors, Getters, and Setters
     public BorrowedBook() {}
 
-    public BorrowedBook(Integer ISBN, Integer userID) {
+    public BorrowedBook(String ISBN, Integer userID) {
         this.ISBN = ISBN;
         this.userID = userID;
     }
 
-    public Integer getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(Integer ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -67,21 +67,21 @@ public class BorrowedBook {
         this.user = user;
     }
 
-    public double getFine() {
+    public Double getFine() {
         return fine;
     }
 
-    public void setFine(double fine) {
+    public void setFine(Double fine) {
         this.fine = fine;
     }
     // Composite Key Class
     public static class BorrowedBookId implements Serializable {
-        private Integer ISBN;
+        private String ISBN;
         private Integer userID;
 
         public BorrowedBookId() {}
 
-        public BorrowedBookId(Integer ISBN, Integer userID) {
+        public BorrowedBookId(String ISBN, Integer userID) {
             this.ISBN = ISBN;
             this.userID = userID;
         }
