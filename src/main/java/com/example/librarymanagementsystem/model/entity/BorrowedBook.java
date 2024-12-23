@@ -25,7 +25,7 @@ public class BorrowedBook {
     private User user;
 
     @Column(name = "fine", columnDefinition = "DOUBLE DEFAULT 0")
-    private Double fine;
+    private double fine;
 
     // Constructors, Getters, and Setters
     public BorrowedBook() {}
@@ -67,11 +67,11 @@ public class BorrowedBook {
         this.user = user;
     }
 
-    public Double getFine() {
+    public double getFine() {
         return fine;
     }
 
-    public void setFine(Double fine) {
+    public void setFine(double fine) {
         this.fine = fine;
     }
     // Composite Key Class
@@ -91,12 +91,12 @@ public class BorrowedBook {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             BorrowedBookId that = (BorrowedBookId) o;
-            return ISBN.equals(that.ISBN) && userID.equals(that.userID);
+            return ISBN.equals(that.ISBN) && userID == that.userID;
         }
 
         @Override
         public int hashCode() {
-            return ISBN.hashCode() + userID.hashCode();
+            return ISBN.hashCode() + userID;
         }
     }
 }

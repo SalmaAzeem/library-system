@@ -24,7 +24,7 @@ public class BookDescription {
     @Column(name="publication_date")
     private Date publicationDate;
     @Column(name="pages")
-    private Integer pages;
+    private int pages;
 
     private List<String> TableOfContents;
     public BookDescription() {}
@@ -71,10 +71,10 @@ public class BookDescription {
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
-    public Integer getPages() {
+    public int getPages() {
         return pages;
     }
-    public void setPages(Integer pages) {
+    public void setPages(int pages) {
         this.pages = pages;
     }
     public List<String> getTableOfContents() {

@@ -9,17 +9,17 @@ public class User extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     @Column(name="frequency")
-    private Integer Frequency;
+    private int Frequency;
 //    private BookList BorrowedList = new BookList();
 //    private BookList readingList;
     public User() { super();}
 
-    public User(String name, int age, String gender, Integer frequency) {
+    public User(String name, int age, String gender, int frequency) {
         super(name, age, gender);
         this.Frequency = frequency;
     }
     public Integer getID() { return ID; }
     public void setID(Integer ID) { this.ID = ID; }
-    public Integer getFrequency() { return Frequency; }
-    public void setFrequency(Integer Frequency) { this.Frequency = Frequency; }
+    public int getFrequency() { return Frequency; }
+    public void setFrequency(int Frequency) { this.Frequency = Frequency; }
 }

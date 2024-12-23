@@ -13,7 +13,7 @@ public class Book {
     private String ISBN;
 
     @Column(name = "stock")
-    private Integer stock;
+    private int stock;
 
     @Transient
     private BookDescriptionDTO description;
@@ -31,11 +31,11 @@ public class Book {
         this.ISBN = id;
     }
 
-    public Integer getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 

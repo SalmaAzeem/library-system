@@ -1,5 +1,7 @@
 package com.example.librarymanagementsystem.model.dto;
 
+import com.example.librarymanagementsystem.model.entity.BookDescription;
+
 import java.time.LocalDate;
 
 /**
@@ -8,15 +10,20 @@ import java.time.LocalDate;
 
 public class BookDescriptionDTO {
     private String summary, title, genre, publisher, Author, ISBN;
-    private Integer pages;
+    private int pages;
     private LocalDate publicationDate;
-    public BookDescriptionDTO(String ISBN, String summary,String title, String genre,String publisher, String Author, LocalDate publicationDate, Integer pages) {
+    public BookDescriptionDTO(String ISBN, String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int pages) {
         this.summary = summary;
         this.title=title;
         this.genre=genre;
         this.publisher=publisher;
         this.ISBN=ISBN;
         this.pages=pages;
+    }
+
+    public static BookDescriptionDTO toDto(BookDescription entity) {
+        return new BookDescriptionDTO(entity.getISBN(), entity.getSummary(), entity.getTitle(),
+                entity.getGenre(), entity.getPublisher(), entity.getAuthor(), entity.getPublicationDate(), entity.getPages());
     }
     public String getSummary() {
         return summary;
@@ -60,10 +67,10 @@ public class BookDescriptionDTO {
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
-    public Integer getPages() {
+    public int getPages() {
         return pages;
     }
-    public void setPages(Integer pages) {
+    public void setPages(int pages) {
         this.pages = pages;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystem.model.dto;
 
 import com.example.librarymanagementsystem.model.entity.Book;
+import com.example.librarymanagementsystem.model.entity.BorrowedBook;
 import com.example.librarymanagementsystem.model.entity.User;
 
 public class BorrowedBookDTO {
@@ -8,15 +9,20 @@ public class BorrowedBookDTO {
     private Integer userID;
     private Book book;
     private User user;
-    private Double fine;
+    private double fine;
 
     public BorrowedBookDTO() {}
-    public BorrowedBookDTO(String ISBN, Integer UserID, Book book, User user, Double fine) {
+    public BorrowedBookDTO(String ISBN, Integer UserID, Book book, User user, double fine) {
         this.ISBN = ISBN;
         this.userID = UserID;
         this.book = book;
         this.user = user;
         this.fine = fine;
+    }
+
+    public static BorrowedBookDTO toDto(BorrowedBook entity) {
+        return new BorrowedBookDTO(entity.getISBN(), entity.getUserID(), entity.getBook(),
+                entity.getUser(), entity.getFine());
     }
 
     public String getISBN() {
@@ -43,10 +49,10 @@ public class BorrowedBookDTO {
     public void setUser(User user) {
         this.user = user;
     }
-    public Double getFine() {
+    public double getFine() {
         return fine;
     }
-    public void setFine(Double fine) {
+    public void setFine(double fine) {
         this.fine = fine;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.librarymanagementsystem.model.dto;
 
+import com.example.librarymanagementsystem.model.entity.Librarian;
+
 public class LibrarianDTO {
     private Integer employeeID;
     private String name;
@@ -13,6 +15,10 @@ public class LibrarianDTO {
         this.name = name;
         this.age = age;
         this.gender = gender;
+    }
+
+    public static LibrarianDTO toDto(Librarian entity) {
+        return new LibrarianDTO(entity.getEmployeeID(), entity.getName(), entity.getAge(), entity.getGender());
     }
 
     public Integer getEmployeeID() {

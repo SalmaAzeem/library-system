@@ -1,29 +1,33 @@
 package com.example.librarymanagementsystem.model.dto;
 
+import com.example.librarymanagementsystem.model.entity.Book;
+
 public class BookDTO {
-    private Integer stock;
+    private int stock;
     private BookDescriptionDTO description;
     private Boolean available;
     private String ISBN;
 
     public BookDTO() {}
 
-    public BookDTO(String ISBN, Integer stock, BookDescriptionDTO description, Boolean available) {
+    public BookDTO(String ISBN, int stock, BookDescriptionDTO description, Boolean available) {
         this.stock = stock;
         this.description = description;
         this.available = available;
         this.ISBN = ISBN;
     }
-
+    public static BookDTO toDto(Book entity) {
+        return new BookDTO(entity.getId(), entity.getStock(), entity.getDescription(), entity.getAvailable());
+    }
     public String getISBN(){ return ISBN; }
 
     public void setISBN(String ISBN){ this.ISBN = ISBN; }
 
-    public Integer getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
