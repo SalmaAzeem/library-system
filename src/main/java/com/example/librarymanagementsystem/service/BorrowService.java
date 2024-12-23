@@ -18,7 +18,7 @@ public class BorrowService {
     public void borrowBook(User user, Book book) {
         // Check if the book is in stock
         BookDTO BooktoBorrow = Bookservice.getBookByISBN(book.getId());
-        if (!(BooktoBorrow.getAvailable() == true && BooktoBorrow.getStock()>0)) {
+        if (!(BooktoBorrow.getAvailable() && BooktoBorrow.getStock()>0)) {
             throw new IllegalStateException("This book is not in stock.");
         }
         // Create and save the BorrowedBook record

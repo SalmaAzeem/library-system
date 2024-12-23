@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookDescriptionRepo extends JpaRepository<BookDescription, Integer>{
-
+public interface BookDescriptionRepo extends JpaRepository<BookDescription, String>{
+    BookDescription findByISBN(String ISBN);
 }
