@@ -1,6 +1,10 @@
 package com.example.librarymanagementsystem.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.example.librarymanagementsystem.model.dto.BookDTO;
+import com.example.librarymanagementsystem.model.dto.BorrowedBookDTO;
 import com.example.librarymanagementsystem.model.entity.Book;
 import com.example.librarymanagementsystem.model.entity.BorrowedBook;
 import com.example.librarymanagementsystem.model.entity.User;
@@ -28,5 +32,12 @@ public class BorrowService {
         if (user.getBorrowedBooks() != null) {
             user.getBorrowedBooks().add(borrowedBook);
         }
+    }
+
+    public List<BorrowedBookDTO> getBorrowedBooksByUserID(Integer userID) {
+        return borrowedBookRepo.findAllByUserID(userID)
+                .stream()
+                .map(BorrowedBookDTO::toDto)
+                .collect(Collectors.toList());
     }
 }

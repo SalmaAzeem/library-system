@@ -15,8 +15,8 @@ public class User extends Person {
     private Integer ID;
     @Column(name="frequency")
     private int Frequency;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BorrowedBook> borrowedBooks = new ArrayList<>();
     public User() { super();}
 

@@ -24,13 +24,18 @@ public class BorrowedBook {
     private User user;
 
 
-    @Column(name = "borrow_date", nullable = false, updatable = false)
+    @Column(name = "borrow_date", nullable = true, updatable = false)
     private LocalDate borrowDate;
 
-    @Column(name = "due_date", nullable = false)
+    @Column(name = "due_date", nullable = true)
     private LocalDate dueDate;
 
     // Constructors
+    public BorrowedBook() {
+    this.borrowDate = LocalDate.now(); // Optional: set default borrowDate
+    this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS); // Optional: set default dueDate
+    }
+
     public BorrowedBook(Integer id, Integer userID) {
         // Initialize borrowDate and dueDate automatically
         this.borrowDate = LocalDate.now();
