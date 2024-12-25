@@ -69,6 +69,26 @@
                 </tbody>
             </table>
         </div>
+        <!-- Fine Details Table -->
+        <div th:if="${fineDetails != null}">
+            <h3>Fine Details</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Number of Late Days</th>
+                        <th>Fine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="fine : ${fineDetails}">
+                        <td th:text="${fine.bookTitle}"></td>
+                        <td th:text="${fine.lateDays}"></td>
+                        <td th:text="${fine.fine}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </main>
 <footer>
