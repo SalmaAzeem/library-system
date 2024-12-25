@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystem.model.entity;
 
 import com.example.librarymanagementsystem.model.dto.BookDescriptionDTO;
+import com.example.librarymanagementsystem.model.entity.BookDescription;
 import jakarta.persistence.*;
 
 @Entity

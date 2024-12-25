@@ -8,8 +8,8 @@ import java.util.Objects;
 
 @Table(name = "borrowed_book")
 @Entity
-@IdClass(BorrowedBook.BorrowedBookId.class)
-public class BorrowedBook {
+@IdClass(ReservedBook.ReservedBookID.class)
+public class ReservedBook {
 
     @Id
     @Column(name = "book_id", nullable = false)
@@ -31,22 +31,15 @@ public class BorrowedBook {
     private LocalDate dueDate;
 
     // Constructors
-    public BorrowedBook() {
+    public ReservedBook() {
     this.borrowDate = LocalDate.now();
     this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS);
     }
 
-    public BorrowedBook(Integer id, Integer userID) {
-        // Initialize borrowDate and dueDate automatically
-        this.borrowDate = LocalDate.now();
-        this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS);
-    }
 
-    public BorrowedBook(String ISBN, Integer userID) {
+    public ReservedBook(String ISBN, Integer userID) {
         this.ISBN = ISBN;
         this.userID = userID;
-        this.borrowDate = LocalDate.now();
-        this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS);
     }
 
     // Getters and Setters
@@ -88,13 +81,13 @@ public class BorrowedBook {
     }
 
     // Composite Key Class
-    public static class BorrowedBookId implements Serializable {
+    public static class ReservedBookID implements Serializable {
         private String ISBN;
         private Integer userID;
 
-        public BorrowedBookId() {}
+        public ReservedBookID() {}
 
-        public BorrowedBookId(String ISBN, Integer userID) {
+        public ReservedBookID(String ISBN, Integer userID) {
             this.ISBN = ISBN;
             this.userID = userID;
         }
@@ -102,8 +95,8 @@ public class BorrowedBook {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (!(o instanceof BorrowedBookId)) return false;
-            BorrowedBookId that = (BorrowedBookId) o;
+            if (!(o instanceof ReservedBookID)) return false;
+            ReservedBookID that = (ReservedBookID) o;
             return Objects.equals(ISBN, that.ISBN) && Objects.equals(userID, that.userID);
         }
 

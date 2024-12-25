@@ -48,7 +48,6 @@ public class BookService {
         Book book = new Book();
         book.setId(bookDTO.getISBN());
         book.setStock(bookDTO.getStock());
-        book.setDescription(bookDTO.getDescription());
         book.setAvailable(bookDTO.getAvailable());
 
         Book savedBook = bookRepository.save(book);

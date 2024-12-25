@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystem.model.dto;
 
 import com.example.librarymanagementsystem.model.entity.Book;
+import com.example.librarymanagementsystem.model.entity.BookDescription;
 
 public class BookDTO {
     private int stock;
@@ -10,14 +11,13 @@ public class BookDTO {
 
     public BookDTO() {}
 
-    public BookDTO(String ISBN, int stock, BookDescriptionDTO description, Boolean available) {
+    public BookDTO(String ISBN, int stock, Boolean available) {
         this.stock = stock;
-        this.description = description;
         this.available = available;
         this.ISBN = ISBN;
     }
     public static BookDTO toDto(Book entity) {
-        return new BookDTO(entity.getId(), entity.getStock(), entity.getDescription(), entity.getAvailable());
+        return new BookDTO(entity.getId(), entity.getStock(), entity.getAvailable());
     }
     public String getISBN(){ return ISBN; }
 
