@@ -1,15 +1,13 @@
 package com.example.librarymanagementsystem.service;
 
 import com.example.librarymanagementsystem.model.dto.BookDTO;
-import com.example.librarymanagementsystem.model.repository.BookRepo;
 import com.example.librarymanagementsystem.model.repository.LibraryRepo;
 import com.example.librarymanagementsystem.model.dto.BookDescriptionDTO;
-import com.example.librarymanagementsystem.model.entity.Book;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -17,57 +15,54 @@ import java.time.LocalDate;
 @Service
 public class LibraryService {
     private final LibraryRepo libraryRepo;
-    private final BookRepo bookRepo;
+    private final BookService bookService;
+    private final BookDescriptionService bookDescriptionService ;
 
-    public LibraryService(LibraryRepo libraryRepo, BookRepo bookRepo) {
+    public LibraryService(LibraryRepo libraryRepo, BookService bookService, BookDescriptionService bookDescriptionService) {
         this.libraryRepo = libraryRepo;
-        this.bookRepo = bookRepo;
+        this.bookService = bookService;
+        this.bookDescriptionService = bookDescriptionService;
     }
-
-    //This could be modified to have a BookList Class so deletion and insertion will be through
-    ArrayList<Book> Books;
-    public List<Book> Search(String name)
+    public List<BookDTO> Search(String name)
     {
-
-        ArrayList<Book> MatchedResults = new ArrayList<>();
-        for (Book b: Books)
-        {
-            if(b.getDescription().getTitle().equalsIgnoreCase(name))
-                MatchedResults.add(b);
-        }
-        return MatchedResults;
+       return bookService.searchBooksByTitle(name);
     }
-    /*public Boolean SearchByIsbn(String ISBN)
+    public BookDTO searchByIsbn(String ISBN)
     {
-        for (Book b: Books)
-        {
-            if(b.getDescription().getISBN().equals(ISBN))
-                return true;
-        }
-        return false;
-    }*/
-    /*public BookDTO FindById(int ID)
+       return bookService.getBookByISBN(ISBN);
+    }
+    public List<BookDTO> seacrhByAuthor(String author)
     {
-        Book book =libraryRepo.findById(ID);
-        if(book.isPresent())
-            return BookDTO.toDto(book.get());
-        return null;
-    }*/
+        return bookService.searchBooksByAuthor(author);
+    }
     //Should be modified to check that the current used is a librarian and not a normal user, Also which class should be responsible for creation
     @PostMapping
-    public BookDTO CreateBook(String summary, String title, String genre, String publisher, String author, LocalDate publicationDate, String ISBN, int pages,List<String> tableOfContents)
+    public BookDTO createBook(int stock,String summary, String title, String genre, String publisher, String author, LocalDate publicationDate, String ISBN, int pages,List<String> tableOfContents, boolean availability)
     {
         //should validate that the book with that ISBN is not available in the database
-        //if(!SearchByIsbn(ISBN)) {
-            BookDescriptionDTO newBookDescription = new BookDescriptionDTO(ISBN, summary, title, genre, publisher,author, publicationDate, pages,tableOfContents);
-            Book newBook = new Book();
-            newBook.setDescription(newBookDescription);
-        Book book1 = this.bookRepo.save(newBook);
-        return BookDTO.toDto(book1);
+        if(bookService.getBookByISBN(ISBN)!= null)
+        {
+            BookDescriptionDTO bookDescriptionDTO = new BookDescriptionDTO(ISBN,summary, title,genre,publisher,author,publicationDate,pages,tableOfContents);
+            bookDescriptionService.saveBookDescription(bookDescriptionDTO);
+            BookDTO bookDTO = new BookDTO(stock,bookDescriptionDTO,availability,ISBN) ;
+            return bookService.saveOrUpdateBook(bookDTO);
+        }
+        else
+        {
+            return null;
+        }
     }
     @DeleteMapping("id/ {id}")
-    public void DeleteBook(int id)
+    public void deleteBook(String isbn)
     {
-        this.bookRepo.deleteById(id);
+        this.bookService.deleteBook(isbn);
+    }
+    @GetMapping("/genre")
+    public List<BookDTO> getBooksByGenre(@RequestParam String genre) {
+        List<BookDTO> books = bookService.categorize(genre);
+        if (books.isEmpty()) {
+            return null;
+        }
+        return books;
     }
 }

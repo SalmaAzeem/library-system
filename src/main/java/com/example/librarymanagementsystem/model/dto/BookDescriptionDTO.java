@@ -17,6 +17,8 @@ public class BookDescriptionDTO {
     public BookDescriptionDTO(String ISBN, String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int pages, List<String> TableOfContents) {
         this.summary = summary;
         this.title=title;
+        this.Author=Author;
+        this.publicationDate = publicationDate;
         this.genre=genre;
         this.publisher=publisher;
         this.ISBN=ISBN;

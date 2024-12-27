@@ -11,6 +11,13 @@ public class BookDTO {
 
     public BookDTO() {}
 
+    public BookDTO(int stock, BookDescriptionDTO description, Boolean available, String ISBN) {
+        this.stock = stock;
+        this.description = description;
+        this.available = available;
+        this.ISBN = ISBN;
+    }
+
     public BookDTO(String ISBN, int stock, Boolean available) {
         this.stock = stock;
         this.available = available;

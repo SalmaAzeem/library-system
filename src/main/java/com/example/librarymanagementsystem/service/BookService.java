@@ -3,13 +3,10 @@ package com.example.librarymanagementsystem.service;
 import com.example.librarymanagementsystem.model.dto.BookDTO;
 import com.example.librarymanagementsystem.model.dto.BookDescriptionDTO;
 import com.example.librarymanagementsystem.model.entity.Book;
-import com.example.librarymanagementsystem.model.repository.BookDescriptionRepo;
 import com.example.librarymanagementsystem.model.repository.BookRepo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +27,7 @@ public class BookService {
     public List<Map<String, Object>> getBookAndDescription() {
         List<Book> books = this.bookRepository.findAll(PageRequest.of(0, 7)).getContent();
         List<Map<String, Object>> booksWithDescription = new ArrayList<>();
-        for (Book book: books) {
+        for (Book book : books) {
             String ISBN = book.getId();
             BookDescriptionDTO bookDescriptionDTO = bookDescriptionService.getDescription(ISBN);
             System.out.println(bookDescriptionDTO.getISBN());
@@ -83,5 +80,26 @@ public class BookService {
         book.setAvailable(newStock > 0); // Update availability based on stock
         Book updatedBook = bookRepository.save(book);
         return BookDTO.toDto(updatedBook);
+    }
+
+    public List<BookDTO> searchBooksByTitle(String title) {
+        List<Book> books = bookRepository.findByTitle(title);
+        return books.stream()
+                .map(BookDTO::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<BookDTO> searchBooksByAuthor(String author) {
+        List<Book> books = bookRepository.findByAuthor(author);
+        return books.stream()
+                .map(BookDTO::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<BookDTO> categorize(String genre) {
+        List<Book> books = bookRepository.findByGenre(genre);
+        return books.stream()
+                .map(BookDTO::toDto)
+                .collect(Collectors.toList());
     }
 }
