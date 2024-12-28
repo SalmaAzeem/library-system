@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<header>
+    <h1>Library Management System</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/books/search">Search Books</a></li>
+            <li><a href="/borrowed">Borrowed Books</a></li>
+            <li><a href="/dashboard">User Dashboard</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section class="login-section">
+        <h2>Login</h2>
+        <form th:action="@{/login}" method="post">
+            <label for="role">I am a:</label>
+            <select name="role" id="role" required>
+                <option value="" selected disabled>Select role</option>
+                <option value="librarian">Librarian</option>
+                <option value="user">User</option>
+            </select>
+            <div id="librarian-login" style="display: none;">
+                <label for="employeeID">Employee ID:</label>
+                <input type="text" name="employeeID" id="employeeID">
+            </div>
+            <div id="user-login" style="display: none;">
+                <label for="userID">User ID:</label>
+                <input type="text" name="userID" id="userID">
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+        <div th:if="${error}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Library Management System</p>
+</footer>
+<script>
+    const roleSelect = document.getElementById('role');
+    const librarianLogin = document.getElementById('librarian-login');
+    const userLogin = document.getElementById('user-login');
+
+    roleSelect.addEventListener('change', () => {
+        const role = roleSelect.value;
+        if (role === 'librarian') {
+            librarianLogin.style.display = 'block';
+            userLogin.style.display = 'none';
+        } else if (role === 'user') {
+            librarianLogin.style.display = 'none';
+            userLogin.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>
