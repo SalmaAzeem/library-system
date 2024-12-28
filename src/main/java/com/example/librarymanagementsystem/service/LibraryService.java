@@ -23,18 +23,18 @@ public class LibraryService {
         this.bookService = bookService;
         this.bookDescriptionService = bookDescriptionService;
     }
-    public List<BookDTO> Search(String name)
-    {
-       return bookService.searchBooksByTitle(name);
-    }
+//    public List<BookDTO> Search(String name)
+//    {
+//       return bookService.searchBooksByTitle(name);
+//    }
     public BookDTO searchByIsbn(String ISBN)
     {
        return bookService.getBookByISBN(ISBN);
     }
-    public List<BookDTO> seacrhByAuthor(String author)
-    {
-        return bookService.searchBooksByAuthor(author);
-    }
+//    public List<BookDTO> seacrhByAuthor(String author)
+//    {
+//        return bookService.searchBooksByAuthor(author);
+//    }
     //Should be modified to check that the current used is a librarian and not a normal user, Also which class should be responsible for creation
     @PostMapping
     public BookDTO createBook(int stock,String summary, String title, String genre, String publisher, String author, LocalDate publicationDate, String ISBN, int pages,List<String> tableOfContents, boolean availability)
@@ -57,12 +57,12 @@ public class LibraryService {
     {
         this.bookService.deleteBook(isbn);
     }
-    @GetMapping("/genre")
-    public List<BookDTO> getBooksByGenre(@RequestParam String genre) {
-        List<BookDTO> books = bookService.categorize(genre);
-        if (books.isEmpty()) {
-            return null;
-        }
-        return books;
-    }
+//    @GetMapping("/genre")
+//    public List<BookDTO> getBooksByGenre(@RequestParam String genre) {
+//        List<BookDTO> books = bookService.categorize(genre);
+//        if (books.isEmpty()) {
+//            return null;
+//        }
+//        return books;
+//    }
 }

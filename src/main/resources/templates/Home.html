@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Library Home</title>
+    <link rel="stylesheet" href="/css/Home.css">
 </head>
 <body>
 <header>
@@ -26,8 +27,7 @@
 <!-- lesa it is not final -->
 
     <section class="highlights">
-        <h1>Welcome to the Library</h1>
-        <h2>Top Picks</h2>
+        <h1>Top Picks</h1>
         <div class="book-list">
             <ul>
                 <li th:each="entry : ${booksWithDescriptions}">
