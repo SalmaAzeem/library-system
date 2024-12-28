@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Library Home</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <title>Library Info</title>
+    <link rel="stylesheet" href="/css/library.css">
 </head>
 <body>
 <header>
-    <div>
-        <h1>Library Management System</h1>
-    </div>
+    <h1>Library Management System</h1>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -22,21 +20,15 @@
     </nav>
 </header>
 <main>
+    <h2>Library Branches</h2>
     <section>
-        <h2>Welcome</h2>
-    </section>
-<!-- lesa it is not final -->
-
-    <section class="highlights">
-        <h1>Top Picks</h1>
-        <div class="book-list">
+        <div class="library-list">
             <ul>
-                <li th:each="entry : ${booksWithDescriptions}">
-                    <strong th:text="${entry.title}"></strong>
-<!--                    <p th:text="${entry.book.ISBN}"></p>-->
-                    <p th:text="${entry.description}"></p>
+                <li th:each="entry : ${libraryDTOS}">
+                    <strong th:text="${entry.name}"></strong>
+                    <p th:text="${entry.location}"></p>
                 </li>
-                <li th:if="${#lists.isEmpty(booksWithDescriptions)}">No books found.</li>
+                <li th:if="${#lists.isEmpty(libraryDTOS)}">No libraries found.</li>
             </ul>
         </div>
     </section>
