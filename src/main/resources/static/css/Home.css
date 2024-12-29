@@ -1,0 +1,177 @@
+/* Main Section Styling */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 130px);
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+/* Welcome Section */
+section.welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    gap: 20px;
+}
+
+/* Welcome Card */
+.welcome-card {
+    flex: 1;
+    text-align: center;
+    background-color: #f9fff9;
+    border: 1px solid #4CAF50;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #4CAF50;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Top Picks Card */
+.top-picks-card {
+    flex: 1;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-picks-card h2 {
+    font-size: 20px;
+    color: #4CAF50;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.top-picks-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.top-picks-card ul li {
+    margin: 10px 0;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top-picks-card ul li:hover {
+    background-color: #e8f5e9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* General Section Styling */
+section {
+    margin: 20px 0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+}/* Main Section Styling */
+ main {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     height: calc(100vh - 130px);
+     padding: 20px;
+     background-color: #f4f4f9;
+ }
+
+ /* Welcome Section */
+ section.welcome-section {
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     background-color: white;
+     padding: 20px;
+     border-radius: 8px;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+     width: 60%;
+     gap: 20px;
+ }
+
+ /* Welcome Card */
+ .welcome-card {
+     flex: 1;
+     text-align: center;
+     background-color: #f9fff9;
+     border: 1px solid #4CAF50;
+     padding: 20px;
+     border-radius: 8px;
+     font-size: 18px;
+     font-weight: bold;
+     color: #4CAF50;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ }
+
+ /* Top Picks Card */
+ .top-picks-card {
+     flex: 1;
+     background-color: white;
+     border: 1px solid #ddd;
+     padding: 20px;
+     border-radius: 8px;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ }
+
+ .top-picks-card h2 {
+     font-size: 20px;
+     color: #4CAF50;
+     margin-bottom: 10px;
+     text-align: center;
+ }
+
+ .top-picks-card ul {
+     list-style: none;
+     padding: 0;
+ }
+
+ .top-picks-card ul li {
+     margin: 10px 0;
+     padding: 5px 10px;
+     border: 1px solid #ddd;
+     border-radius: 5px;
+     background-color: #f9f9f9;
+     font-size: 16px;
+     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .top-picks-card ul li:hover {
+     background-color: #e8f5e9;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+     cursor: pointer;
+ }
+
+ /* General Section Styling */
+ section {
+     margin: 20px 0;
+ }
+
+ /* Footer */
+ footer {
+     text-align: center;
+     padding: 15px;
+     background-color: #4CAF50;
+     color: white;
+     font-size: 14px;
+ }

@@ -11,9 +11,8 @@ import java.util.List;
 @Repository
 public interface BookRepo extends JpaRepository<Book, Integer> {
     Page<Book> findAll(Pageable pageable);
-    List<Book> findByTitle(String title);
-    List<Book> findByAuthor(String author);
-    List<Book> findByGenre(String genre);
-
+//    List<Book> findByTitle(String title);
+//    List<Book> findByAuthor(String author);
+//    List<Book> findByGenre(String genre);
 
 }
