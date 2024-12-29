@@ -20,10 +20,10 @@ public class BookService {
     @Autowired
     private BookDescriptionService bookDescriptionService;
 
-    public List<Book> getAny7Books() {
-        return bookRepository.findAll(PageRequest.of(0, 7)).getContent();
+    public List<Book> getAny7Books(int n) {
+        return bookRepository.findAll(PageRequest.of(0, n-1)).getContent();
     }
-
+    //To be modified
     public List<Map<String, Object>> getBookAndDescription() {
         List<Book> books = this.bookRepository.findAll(PageRequest.of(0, 7)).getContent();
         List<Map<String, Object>> booksWithDescription = new ArrayList<>();
