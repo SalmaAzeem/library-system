@@ -35,7 +35,7 @@ public class LibraryService {
                 .collect(Collectors.toList());
     }
 
-    public List<BookDescriptionDTO> Search(String name)
+    public List<BookDescriptionDTO> search(String name)
     {
        return bookDescriptionService.searchBooksByTitle(name);
     }

@@ -22,10 +22,9 @@ public class BookDescriptionService {
         return bookDescription.map(BookDescriptionDTO::toDto).orElse(null);
     }
 
-    public void DeleteBookDescription(String ISBN) {
+    public void deleteBookDescription(String ISBN) {
         this.bookDescriptionRepo.deleteById(ISBN);
     }
-
     public void saveBookDescription(BookDescriptionDTO bookDescriptionDTO) {
         if (bookDescriptionDTO.getISBN() != null) {
             BookDescription bookDescription = this.bookDescriptionRepo.findById(bookDescriptionDTO.getISBN())
@@ -64,14 +63,12 @@ public class BookDescriptionService {
                 .map(BookDescriptionDTO::toDto)
                 .collect(Collectors.toList());
     }
-
     public List<BookDescriptionDTO> searchBooksByAuthor(String author) {
         List<BookDescription> books = bookDescriptionRepo.findByAuthor(author);
         return books.stream()
                 .map(BookDescriptionDTO::toDto)
                 .collect(Collectors.toList());
     }
-
     public List<BookDescriptionDTO> categorize(String genre) {
         List<BookDescription> books = bookDescriptionRepo.findByGenre(genre);
         return books.stream()

@@ -39,7 +39,6 @@ public class BookService {
         }
         return booksWithDescription;
     }
-
     // Create or update a book
     public BookDTO saveOrUpdateBook(BookDTO bookDTO) {
         Book book = new Book();
