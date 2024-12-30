@@ -37,24 +37,24 @@ public class FineManagement {
         return 0.0;
     }
 
-    public List<Map<String, Object>> calculateFinesForUser(int userID) {
-        List<BorrowedBook> borrowedBooks = borrowedBookRepo.findAllByUserID(userID);
-        List<Map<String, Object>> fineDetails = new ArrayList<>();
-
-        for (BorrowedBook book : borrowedBooks) {
-            Map<String, Object> details = new HashMap<>();
-
-            // Fetch book title using ISBN
-            String bookTitle = bookDescriptionRepo.findById(book.getISBN())
-                    .map(BookDescription::getTitle)
-                    .orElse("Unknown Title");
-
-            details.put("bookTitle", bookTitle);
-            details.put("lateDays", Math.max(0, ChronoUnit.DAYS.between(book.getDueDate(), LocalDate.now())));
-            details.put("fine", calculateFine(userID, book.getISBN()));
-            fineDetails.add(details);
-        }
-
-        return fineDetails;
-    }
+//    public List<Map<String, Object>> calculateFinesForUser(int userID) {
+//        List<BorrowedBook> borrowedBooks = borrowedBookRepo.findAllByUserID(userID);
+//        List<Map<String, Object>> fineDetails = new ArrayList<>();
+//
+//        for (BorrowedBook book : borrowedBooks) {
+//            Map<String, Object> details = new HashMap<>();
+//
+//            // Fetch book title using ISBN
+//            String bookTitle = bookDescriptionRepo.findById(book.getISBN())
+//                    .map(BookDescription::getTitle)
+//                    .orElse("Unknown Title");
+//
+//            details.put("bookTitle", bookTitle);
+//            details.put("lateDays", Math.max(0, ChronoUnit.DAYS.between(book.getDueDate(), LocalDate.now())));
+//            details.put("fine", calculateFine(userID, book.getISBN()));
+//            fineDetails.add(details);
+//        }
+//
+//        return fineDetails;
+//    }
 }

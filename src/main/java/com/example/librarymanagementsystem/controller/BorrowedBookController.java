@@ -4,6 +4,7 @@ package com.example.librarymanagementsystem.controller;
 
 import com.example.librarymanagementsystem.model.dto.BorrowedBookDTO;
 import com.example.librarymanagementsystem.model.dto.ReservedBookDTO;
+import com.example.librarymanagementsystem.model.entity.ReservedBook;
 import com.example.librarymanagementsystem.service.BorrowService;
 
 import com.example.librarymanagementsystem.service.FineManagement;
@@ -31,22 +32,20 @@ public class BorrowedBookController {
     @Autowired
     private ReserveService reserveService;
 
-    @GetMapping("/user/borrowed")
-    public String getBorrowedBooksByUser(@RequestParam Integer userID, Model model) {
+    @GetMapping("/user")
+    public String getBooksAndFinesByUser(@RequestParam("userID") Integer userID, Model model) {
+        if (userID == null) {
+            model.addAttribute("errorMessage", "User ID is required.");
+            return "error";
+        }
+        System.out.println("Fetching data for userID: " + userID);
         List<BorrowedBookDTO> borrowedBooks = borrowedBookService.getBorrowedBooksByUserID(userID);
         model.addAttribute("userID", userID);
         model.addAttribute("borrowedBooks", borrowedBooks);
-        List<Map<String, Object>> fineDetails = fineManager.calculateFinesForUser(userID);
+        List<BorrowedBookDTO> fineDetails = borrowedBookService.getBorrowedBooksByUserID(userID);
         model.addAttribute("fineDetails", fineDetails);
-        return "borrowed_books";
-    }
-
-    @GetMapping("/user/reserved")
-    public String getReservedBooksByUser(@RequestParam("userID") Integer userID, Model model) {
         List<ReservedBookDTO> reservedBooks = reserveService.getReservedBooksbyUserID(userID);
         model.addAttribute("reservedBooks", reservedBooks);
-        model.addAttribute("userID", userID);
-        return "reserved_books";
+        return "borrowed_books";
     }
-
 }

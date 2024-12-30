@@ -41,12 +41,12 @@
     <section>
         <h2>Borrowed Books </h2>
 
-        <!-- Form to input User ID -->
-        <form action="/borrowed-books/user" method="get">
-            <label for="userID">Enter User ID:</label>
-            <input type="number" id="userID" name="userID" required>
-            <button type="submit">Search</button>
-        </form>
+<!--        &lt;!&ndash; Form to input User ID &ndash;&gt;-->
+<!--        <form action="/borrowed-books/user" method="get">-->
+<!--            <label for="userID">Enter User ID:</label>-->
+<!--            <input type="number" id="userID" name="userID" required>-->
+<!--            <button type="submit">Search</button>-->
+<!--        </form>-->
 
         <!-- Table to display borrowed books -->
         <div th:if="${borrowedBooks != null}">
@@ -71,6 +71,7 @@
                 </tbody>
             </table>
         </div>
+                <br><br>
         <!-- Fine Details Table -->
         <div th:if="${fineDetails != null}">
             <h3>Fine Details</h3>
@@ -91,19 +92,20 @@
                 </tbody>
             </table>
         </div>
+        <br><br>
         <div th:if="${reservedBooks != null}">
             <h3>Reserved Books</h3>
             <table>
                 <thead>
                     <tr>
                         <th>ISBN</th>
-                        <th>User ID</th>
+                        <th>Title</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="reserved : ${reservedBooks}">
-                        <td th:text="${reserved.ISBN}"></td>
-                        <td th:text="${reserved.userID}"></td>
+                    <tr th:each="book : ${reservedBooks}">
+                        <td th:text="${book.ISBN}"></td>
+                        <td th:text="${book.bookTitle}"></td>
                     </tr>
                     <tr th:if="${#lists.isEmpty(reservedBooks)}">
                         <td colspan="2">No reserved books found for this user.</td>

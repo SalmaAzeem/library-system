@@ -1,5 +1,7 @@
 package com.example.librarymanagementsystem.service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,9 @@ import com.example.librarymanagementsystem.model.dto.BorrowedBookDTO;
 import com.example.librarymanagementsystem.model.entity.Book;
 import com.example.librarymanagementsystem.model.entity.BorrowedBook;
 import com.example.librarymanagementsystem.model.entity.User;
+import com.example.librarymanagementsystem.model.repository.BookDescriptionRepo;
 import com.example.librarymanagementsystem.model.repository.BorrowedBookRepo;
+import com.example.librarymanagementsystem.model.entity.BookDescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +21,11 @@ public class BorrowService {
     @Autowired
     private BorrowedBookRepo borrowedBookRepo;
     @Autowired
+    private BookDescriptionRepo bookDescriptionRepo;
+    @Autowired
     private BookService Bookservice;
+    @Autowired
+    private FineManagement fineservice;
 
     public void borrowBook(User user, Book book) {
         // Check if the book is in stock
@@ -32,9 +40,25 @@ public class BorrowService {
     }
 
     public List<BorrowedBookDTO> getBorrowedBooksByUserID(Integer userID) {
-        return borrowedBookRepo.findAllByUserID(userID)
-                .stream()
-                .map(BorrowedBookDTO::toDto)
-                .collect(Collectors.toList());
-    }
+    return borrowedBookRepo.findAllByUserID(userID)
+            .stream()
+            .map(borrowedBook -> {
+                // Fetch the book title using ISBN
+                String bookTitle = bookDescriptionRepo.findById(borrowedBook.getISBN())
+                        .map(BookDescription::getTitle)
+                        .orElse("Unknown Title");
+
+                // Calculate late days
+                long lateDays = Math.max(0, ChronoUnit.DAYS.between(borrowedBook.getDueDate(), LocalDate.now()));
+
+                // Calculate fine based on late days
+                double fine = fineservice.calculateFine(userID, borrowedBook.getISBN());
+
+                // Convert to DTO with additional fields
+                return BorrowedBookDTO.toDto(borrowedBook, fine, lateDays, bookTitle);
+            })
+            .collect(Collectors.toList());
+}
+
+
 }
