@@ -1,21 +1,23 @@
 package com.example.librarymanagementsystem.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.example.librarymanagementsystem.model.dto.BookDTO;
-import com.example.librarymanagementsystem.model.dto.BorrowedBookDTO;
+import com.example.librarymanagementsystem.model.dto.ReservedBookDTO;
 import com.example.librarymanagementsystem.model.entity.Book;
-import com.example.librarymanagementsystem.model.entity.BorrowedBook;
+import com.example.librarymanagementsystem.model.entity.ReservedBook;
 import com.example.librarymanagementsystem.model.entity.User;
-import com.example.librarymanagementsystem.model.repository.BorrowedBookRepo;
+import com.example.librarymanagementsystem.model.repository.ReservedBookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
-public class BorrowService {
+
+public class ReserveService {
+
     @Autowired
-    private BorrowedBookRepo borrowedBookRepo;
+    private ReservedBookRepo ReserveRepo;
     @Autowired
     private BookService Bookservice;
 
@@ -26,15 +28,14 @@ public class BorrowService {
             throw new IllegalStateException("This book is not in stock.");
         }
         // Create and save the BorrowedBook record
-        BorrowedBook borrowedBook = new BorrowedBook(book.getId(), user.getID());
-        borrowedBookRepo.save(borrowedBook);
-        user.getBorrowedBooks().add(borrowedBook);
+        ReservedBook reservedBook = new ReservedBook(book.getId(), user.getID());
+        ReserveRepo.save(reservedBook);
     }
 
-    public List<BorrowedBookDTO> getBorrowedBooksByUserID(Integer userID) {
-        return borrowedBookRepo.findAllByUserID(userID)
+    public List<ReservedBookDTO> getReservedBooksbyUserID(Integer userID) {
+        return ReserveRepo.findAllByUserID(userID)
                 .stream()
-                .map(BorrowedBookDTO::toDto)
+                .map(ReservedBookDTO::toDto)
                 .collect(Collectors.toList());
     }
 }

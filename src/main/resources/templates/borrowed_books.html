@@ -90,6 +90,26 @@
                 </tbody>
             </table>
         </div>
+        <div th:if="${reservedBooks != null}">
+            <h3>Reserved Books</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>User ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="reserved : ${reservedBooks}">
+                        <td th:text="${reserved.ISBN}"></td>
+                        <td th:text="${reserved.userID}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(reservedBooks)}">
+                        <td colspan="2">No reserved books found for this user.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </main>
 <footer>

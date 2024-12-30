@@ -1,9 +1,6 @@
 package com.example.librarymanagementsystem.model.dto;
 
-import com.example.librarymanagementsystem.model.entity.BorrowedBook;
 import com.example.librarymanagementsystem.model.entity.ReservedBook;
-
-import java.time.LocalDate;
 
 public class ReservedBookDTO {
     private String ISBN;

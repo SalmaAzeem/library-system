@@ -2,8 +2,6 @@ package com.example.librarymanagementsystem.model.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @Table(name = "borrowed_book")
@@ -23,17 +21,8 @@ public class ReservedBook {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-
-    @Column(name = "borrow_date", nullable = true, updatable = false)
-    private LocalDate borrowDate;
-
-    @Column(name = "due_date", nullable = true)
-    private LocalDate dueDate;
-
     // Constructors
     public ReservedBook() {
-    this.borrowDate = LocalDate.now();
-    this.dueDate = this.borrowDate.plus(2, ChronoUnit.WEEKS);
     }
 
 
@@ -67,18 +56,6 @@ public class ReservedBook {
         this.user = user;
     }
 
-
-    public LocalDate getBorrowDate() {
-        return borrowDate;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
 
     // Composite Key Class
     public static class ReservedBookID implements Serializable {
