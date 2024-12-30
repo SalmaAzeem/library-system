@@ -5,6 +5,9 @@ body {
     padding: 0;
     color: #333;
     background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body spans full height */
 }
 
 header {
@@ -39,8 +42,9 @@ nav ul li a:hover {
 
 /* Main Section */
 main {
+    flex: 1; /* Ensures main takes available space */
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Aligns items to the left */
     align-items: flex-start;
     flex-direction: column;
     padding: 20px;
@@ -53,20 +57,22 @@ h2 {
 }
 
 /* Library List Section */
+/* Library List Section */
 section {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
+    max-width: 100%; /* Make the section span full width */
     width: 100%;
-    margin-left: 20px; /* Align to the left */
+    margin: 0; /* Remove left margin */
 }
 
 .library-list ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%; /* Ensure the list spans full width */
 }
 
 .library-list ul li {
@@ -76,6 +82,8 @@ section {
     border-radius: 5px;
     background-color: #f9f9f9;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Make each list item span full width */
+    box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 .library-list ul li:hover {
@@ -94,6 +102,20 @@ section {
     margin-top: 5px;
 }
 
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin: 10px 0;
+    text-align: justify;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 4px solid #4CAF50;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
 /* Footer */
 footer {
     text-align: center;
@@ -101,7 +123,5 @@ footer {
     background-color: #4CAF50;
     color: white;
     font-size: 14px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    margin-top: auto; /* Pushes footer to the end of the page */
 }

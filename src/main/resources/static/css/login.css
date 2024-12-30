@@ -198,14 +198,7 @@ section {
     margin: 20px 0;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 14px;
-}/* Main Section Styling */
+/* Main Section Styling */
  main {
      display: flex;
      justify-content: center;

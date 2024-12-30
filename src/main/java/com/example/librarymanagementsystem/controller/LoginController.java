@@ -29,7 +29,7 @@ public class LoginController {
         if ("librarian".equalsIgnoreCase(role)) {
             LibrarianDTO librarianDTO = librarianService.getLibrarian(employeeID);
             if (librarianDTO != null) {
-                return "redirect:/librariandash";
+                return "redirect:/";
             } else {
                 model.addAttribute("error", "Invalid Employee ID");
                 return "Login";
@@ -37,7 +37,7 @@ public class LoginController {
         } else if ("user".equalsIgnoreCase(role)) {
             UserDTO user = userService.getUser(userID);
             if (user != null) {
-                return "redirect:/userdash";
+                return "redirect:/";
             } else {
                 model.addAttribute("error", "Invalid User ID");
                 return "Login";
@@ -48,13 +48,24 @@ public class LoginController {
     }
 
     @GetMapping("/signup")
-    public String handleSignUp(UserDTO user, Model model) {
+    public String showSignUpForm(Model model) {
+        model.addAttribute("userDTO", new UserDTO());
+        return "SignUp";
+    }
+
+    @PostMapping("/signup")
+    public String processSignUp(UserDTO userDTO, Model model) {
         try {
-            userService.saveUser(user);
-            return "redirect:/userdash";
-        } catch(Exception e) {
+            System.out.println(userDTO.getID());
+            System.out.println(userDTO.getName());
+            System.out.println(userDTO.getAge());
+            System.out.println(userDTO.getGender());
+            userService.saveUser(userDTO);
+            return "redirect:/";
+        } catch (Exception e) {
             model.addAttribute("error", "Unable to Sign up. Please try again.");
             return "SignUp";
         }
     }
+
 }
