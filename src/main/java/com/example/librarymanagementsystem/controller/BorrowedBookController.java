@@ -41,7 +41,7 @@ public class BorrowedBookController {
         return "borrowed_books";
     }
 
-    @GetMapping("/reserved-books/user")
+    @GetMapping("/user")
     public String getReservedBooksByUser(@RequestParam("userID") Integer userID, Model model) {
         List<ReservedBookDTO> reservedBooks = reserveService.getReservedBooksbyUserID(userID);
         model.addAttribute("reservedBooks", reservedBooks);
