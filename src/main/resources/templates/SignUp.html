@@ -7,11 +7,21 @@
 <body>
 <header>
     <h1>Library Management System</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/books/search">Search Books</a></li>
+            <li><a href="/borrowed">Borrowed Books</a></li>
+            <li><a href="/dashboard">User Dashboard</a></li>
+            <li><a href="/libinfo">Library Info</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
 </header>
 <main>
     <section class="signup-section">
         <h2>Sign Up</h2>
-        <form th:action="@{/signup}" method="get">
+        <form th:action="@{/signup}" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required>
 

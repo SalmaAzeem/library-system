@@ -44,10 +44,17 @@ public class UserService {
             user.setAge(userDTO.getAge());
             user.setGender(userDTO.getGender());
             user.setFrequency(userDTO.getFrequency());
+            userRepo.save(user);
         } else {
-            throw new IllegalArgumentException("Can't update a user without an ID.");
+            User user = new User();
+            user.setName(userDTO.getName());
+            user.setAge(userDTO.getAge());
+            user.setGender(userDTO.getGender());
+            user.setFrequency(userDTO.getFrequency());
+            userRepo.save(user);
         }
     }
+
 
     public void updateUser(UserDTO userDTO) {
         if (userDTO.getID() != null) {
