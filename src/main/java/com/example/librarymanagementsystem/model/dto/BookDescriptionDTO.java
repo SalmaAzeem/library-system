@@ -10,14 +10,14 @@ import java.util.List;
  */
 
 public class BookDescriptionDTO {
-    private String summary, title, genre, publisher, Author, ISBN;
+    private String summary, title, genre, publisher, author, ISBN;
     private int pages;
     private LocalDate publicationDate;
     private List<String> TableOfContents;
-    public BookDescriptionDTO(String ISBN, String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int pages, List<String> TableOfContents) {
+    public BookDescriptionDTO(String ISBN, String summary, String title, String genre, String publisher, String author, LocalDate publicationDate, int pages, List<String> TableOfContents) {
         this.summary = summary;
         this.title=title;
-        this.Author=Author;
+        this.author=author;
         this.publicationDate = publicationDate;
         this.genre=genre;
         this.publisher=publisher;
@@ -25,7 +25,7 @@ public class BookDescriptionDTO {
         this.pages=pages;
         this.TableOfContents = TableOfContents;
     }
-    public BookDescriptionDTO(String ISBN, String summary, String title, String genre, String publisher, String Author, LocalDate publicationDate, int pages) {
+    public BookDescriptionDTO(String ISBN, String summary, String title, String genre, String publisher, String author, LocalDate publicationDate, int pages) {
         this.summary = summary;
         this.title=title;
         this.genre=genre;
@@ -52,10 +52,10 @@ public class BookDescriptionDTO {
         this.title = title;
     }
     public String getAuthor() {
-        return Author;
+        return author;
     }
     public void setAuthor(String author) {
-        Author = author;
+        this.author = author;
     }
     public String getGenre() {
         return genre;

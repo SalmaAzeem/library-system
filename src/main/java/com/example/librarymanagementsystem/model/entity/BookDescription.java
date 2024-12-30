@@ -17,7 +17,7 @@ public class BookDescription {
     @Column(name="title")
     private String title;
     @Column(name="author")
-    private String Author;
+    private String author;
     @Column(name="genre")
     private String genre;
     @Column(name="publisher")
@@ -43,10 +43,10 @@ public class BookDescription {
         this.title = title;
     }
     public String getAuthor() {
-        return Author;
+        return author;
     }
     public void setAuthor(String author) {
-        Author = author;
+        this.author = author;
     }
     public String getGenre() {
         return genre;

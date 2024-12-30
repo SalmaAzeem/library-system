@@ -31,7 +31,7 @@ public class BorrowedBookController {
     @Autowired
     private ReserveService reserveService;
 
-    @GetMapping("/user")
+    @GetMapping("/user/borrowed")
     public String getBorrowedBooksByUser(@RequestParam Integer userID, Model model) {
         List<BorrowedBookDTO> borrowedBooks = borrowedBookService.getBorrowedBooksByUserID(userID);
         model.addAttribute("userID", userID);
@@ -41,12 +41,12 @@ public class BorrowedBookController {
         return "borrowed_books";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/reserved")
     public String getReservedBooksByUser(@RequestParam("userID") Integer userID, Model model) {
         List<ReservedBookDTO> reservedBooks = reserveService.getReservedBooksbyUserID(userID);
         model.addAttribute("reservedBooks", reservedBooks);
         model.addAttribute("userID", userID);
-        return "borrowed_books"; // Ensure this matches the name of your Thymeleaf HTML file
+        return "reserved_books";
     }
 
 }

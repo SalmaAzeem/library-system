@@ -79,7 +79,6 @@ public class BookController {
         bookService.updateStock(ISBN, newStock);
         return "redirect:/LibrarianDashboard";
     }
-    private BookService bookService;
 
     /**
      * Displays details of a specific book by ISBN.
