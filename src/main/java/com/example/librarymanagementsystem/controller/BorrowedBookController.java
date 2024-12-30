@@ -46,7 +46,7 @@ public class BorrowedBookController {
         List<ReservedBookDTO> reservedBooks = reserveService.getReservedBooksbyUserID(userID);
         model.addAttribute("reservedBooks", reservedBooks);
         model.addAttribute("userID", userID);
-        return "library-home"; // Ensure this matches the name of your Thymeleaf HTML file
+        return "borrowed_books"; // Ensure this matches the name of your Thymeleaf HTML file
     }
 
 }
