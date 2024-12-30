@@ -5,7 +5,6 @@ import com.example.librarymanagementsystem.model.entity.Librarian;
 import com.example.librarymanagementsystem.model.repository.LibrarianRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,12 +24,10 @@ public class LibrarianService {
                 ))
                 .collect(Collectors.toList());
     }
-
     public LibrarianDTO getLibrarian(int ID) {
         Optional<Librarian> librarian = this.librarianRepo.findById(ID);
         return librarian.map(LibrarianDTO::toDto).orElse(null);
     }
-
     public void DeleteLibrarian(int ID) {
         this.librarianRepo.deleteById(ID);
     }

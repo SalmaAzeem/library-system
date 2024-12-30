@@ -10,5 +10,4 @@ public class BookDescriptionController {
     public BookDescriptionController(BookDescriptionService bookDescriptionService) {
         this.bookDescriptionService = bookDescriptionService;
     }
-
 }

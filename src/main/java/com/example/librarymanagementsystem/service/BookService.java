@@ -39,7 +39,6 @@ public class BookService {
         }
         return booksWithDescription;
     }
-
     // Create or update a book
     public BookDTO saveOrUpdateBook(BookDTO bookDTO) {
         Book book = new Book();
@@ -82,24 +81,4 @@ public class BookService {
         return BookDTO.toDto(updatedBook);
     }
 
-//    public List<BookDTO> searchBooksByTitle(String title) {
-//        List<Book> books = bookRepository.findByTitle(title);
-//        return books.stream()
-//                .map(BookDTO::toDto)
-//                .collect(Collectors.toList());
-//    }
-//
-//    public List<BookDTO> searchBooksByAuthor(String author) {
-//        List<Book> books = bookRepository.findByAuthor(author);
-//        return books.stream()
-//                .map(BookDTO::toDto)
-//                .collect(Collectors.toList());
-//    }
-//
-//    public List<BookDTO> categorize(String genre) {
-//        List<Book> books = bookRepository.findByGenre(genre);
-//        return books.stream()
-//                .map(BookDTO::toDto)
-//                .collect(Collectors.toList());
-//    }
 }

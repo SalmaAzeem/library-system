@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 public class LibraryService {
     @Autowired
     private LibraryRepo libraryRepo;
+    private BookService bookService;
+    private BookDescriptionService bookDescriptionService;
 
     public List<LibraryDTO> getAllLibraries() {
         return this.libraryRepo.findAll()
@@ -33,45 +35,44 @@ public class LibraryService {
                 .collect(Collectors.toList());
     }
 
-
-//    public List<BookDTO> Search(String name)
-//    {
-//       return bookService.searchBooksByTitle(name);
-//    }
-//    public BookDTO searchByIsbn(String ISBN)
-//    {
-//       return bookService.getBookByISBN(ISBN);
-//    }
-//    public List<BookDTO> seacrhByAuthor(String author)
-//    {
-//        return bookService.searchBooksByAuthor(author);
-//    }
+    public List<BookDescriptionDTO> search(String name)
+    {
+       return bookDescriptionService.searchBooksByTitle(name);
+    }
+    public BookDTO searchByIsbn(String ISBN)
+    {
+       return bookService.getBookByISBN(ISBN);
+    }
+    public List<BookDescriptionDTO> seacrhByAuthor(String author)
+    {
+        return bookDescriptionService.searchBooksByAuthor(author);
+    }
     //Should be modified to check that the current used is a librarian and not a normal user, Also which class should be responsible for creation
-//    public BookDTO createBook(int stock,String summary, String title, String genre, String publisher, String author, LocalDate publicationDate, String ISBN, int pages,List<String> tableOfContents, boolean availability)
-//    {
-//        //should validate that the book with that ISBN is not available in the database
-//        if(bookService.getBookByISBN(ISBN)!= null)
-//        {
-//            BookDescriptionDTO bookDescriptionDTO = new BookDescriptionDTO(ISBN,summary, title,genre,publisher,author,publicationDate,pages,tableOfContents);
-//            bookDescriptionService.saveBookDescription(bookDescriptionDTO);
-//            BookDTO bookDTO = new BookDTO(stock,bookDescriptionDTO,availability,ISBN) ;
-//            return bookService.saveOrUpdateBook(bookDTO);
-//        }
-//        else
-//        {
-//            return null;
-//        }
-//    }
+    public BookDTO createBook(int stock,String summary, String title, String genre, String publisher, String author, LocalDate publicationDate, String ISBN, int pages,List<String> tableOfContents, boolean availability)
+    {
+        //should validate that the book with that ISBN is not available in the database
+        if(bookService.getBookByISBN(ISBN)!= null)
+        {
+            BookDescriptionDTO bookDescriptionDTO = new BookDescriptionDTO(ISBN,summary, title,genre,publisher,author,publicationDate,pages,tableOfContents);
+            bookDescriptionService.saveBookDescription(bookDescriptionDTO);
+            BookDTO bookDTO = new BookDTO(stock,bookDescriptionDTO,availability,ISBN) ;
+            return bookService.saveOrUpdateBook(bookDTO);
+        }
+        else
+        {
+            return null;
+        }
+    }
 
-//    public void deleteBook(String isbn)
-//    {
-//        this.bookService.deleteBook(isbn);
-//    }
-//    public List<BookDTO> getBooksByGenre(@RequestParam String genre) {
-//        List<BookDTO> books = bookService.categorize(genre);
-//        if (books.isEmpty()) {
-//            return null;
-//        }
-//        return books;
-//    }
+    public void deleteBook(String isbn)
+    {
+        this.bookService.deleteBook(isbn);
+    }
+    /*public List<BookDTO> getBooksByGenre(@RequestParam String genre) {
+        List<BookDTO> books = bookService.categorize(genre);
+        if (books.isEmpty()) {
+            return null;
+        }
+        return books;
+    }*/
 }
