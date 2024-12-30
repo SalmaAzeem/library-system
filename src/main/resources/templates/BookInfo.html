@@ -28,6 +28,17 @@
     <p><strong>Publisher:</strong> <span th:text="${bookDetails['publisher']}"></span></p>
     <p><strong>Publication Date:</strong> <span th:text="${bookDetails['date']}"></span></p>
     <p><strong>Pages:</strong> <span th:text="${bookDetails['pages']}"></span></p>
+    <br><br>
+    <div>
+        <form th:action="@{/book/borrow}" method="post">
+            <input type="hidden" name="ISBN" th:value="${bookDetails['book'].id}">
+            <button type="submit">Borrow</button>
+        </form>
+        <form th:action="@{/book/reserve}" method="post">
+            <input type="hidden" name="ISBN" th:value="${bookDetails['book'].id}">
+            <button type="submit">Reserve</button>
+        </form>
+    </div>
 </main>
 <footer>
     <p>Contact us at info@library.com | Library Hours: 9 AM - 8 PM</p>

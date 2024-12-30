@@ -2,9 +2,12 @@ package com.example.librarymanagementsystem.controller;
 
 import com.example.librarymanagementsystem.model.dto.BookDTO;
 import com.example.librarymanagementsystem.model.dto.BookDescriptionDTO;
+import com.example.librarymanagementsystem.model.dto.UserDTO;
 import com.example.librarymanagementsystem.model.entity.Book;
 import com.example.librarymanagementsystem.service.BookDescriptionService;
 import com.example.librarymanagementsystem.service.BookService;
+import com.example.librarymanagementsystem.service.BorrowService;
+import com.example.librarymanagementsystem.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +20,15 @@ import java.util.Map;
 public class BookController {
 
     @Autowired
-    private final BookService bookService;
-    private final BookDescriptionService bookDescriptionService;
+    private BookService bookService;
+    @Autowired
+    private BookDescriptionService bookDescriptionService;
+    @Autowired
+    private BorrowService borrowService;
+    @Autowired
+    private ReserveService reserveService;
 
-    public BookController(BookService bookService, BookDescriptionService bookDescriptionService) {
-        this.bookService = bookService;
-        this.bookDescriptionService = bookDescriptionService;
+    public BookController() {
     }
 
 
@@ -88,9 +94,46 @@ public class BookController {
      * @return The name of the HTML template for the book details.
      */
     @GetMapping("/{ISBN}")
-    public String bookInfo(@PathVariable String ISBN, Model model) {
+    public String bookInfo(@PathVariable String ISBN, @SessionAttribute("loggedInUserID") Integer userID, Model model) {
+        if (userID == null) {
+            model.addAttribute("errorMessage", "User ID is required.");
+            return "error";
+        }
         Map<String, Object> bookDetails = bookService.getBookAndDescriptionByISBN(ISBN);
         model.addAttribute("bookDetails", bookDetails);
         return "BookInfo"; // Template for the book details
     }
+
+    @PostMapping("/borrow")
+    public String borrowBook(@RequestParam String ISBN, @SessionAttribute("loggedInUserID") Integer userID, Model model) {
+        if (userID == null) {
+            model.addAttribute("errorMessage", "User ID is required.");
+            return "error";
+        }
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setISBN(ISBN);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setID(userID);
+        // Call service to handle borrowing
+        borrowService.borrowBook(userDTO, bookDTO);
+
+        return "redirect:/borrowed-books"; // Redirect to a relevant page
+    }
+
+    @PostMapping("/reserve")
+    public String reserveBook(@RequestParam String ISBN, @SessionAttribute("loggedInUserID") Integer userID, Model model) {
+        if (userID == null) {
+            model.addAttribute("errorMessage", "User ID is required.");
+            return "error";
+        }
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setISBN(ISBN);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setID(userID);
+
+        reserveService.reserveBook(userDTO, bookDTO);
+
+        return "redirect:/borrowed-books"; // Redirect to a relevant page
+    }
+
 }

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.example.librarymanagementsystem.model.dto.BookDTO;
 import com.example.librarymanagementsystem.model.dto.BorrowedBookDTO;
+import com.example.librarymanagementsystem.model.dto.UserDTO;
 import com.example.librarymanagementsystem.model.entity.Book;
 import com.example.librarymanagementsystem.model.entity.BorrowedBook;
 import com.example.librarymanagementsystem.model.entity.User;
@@ -26,16 +27,19 @@ public class BorrowService {
     private BookService Bookservice;
     @Autowired
     private FineManagement fineservice;
+    @Autowired
+    private UserService userService;
 
-    public void borrowBook(User user, Book book) {
+    public void borrowBook(UserDTO nuser, BookDTO book) {
         // Check if the book is in stock
-        BookDTO BooktoBorrow = Bookservice.getBookByISBN(book.getId());
+        BookDTO BooktoBorrow = Bookservice.getBookByISBN(book.getISBN());
         if (!(BooktoBorrow.getAvailable() && BooktoBorrow.getStock()>0)) {
             throw new IllegalStateException("This book is not in stock.");
         }
         // Create and save the BorrowedBook record
-        BorrowedBook borrowedBook = new BorrowedBook(book.getId(), user.getID());
+        BorrowedBook borrowedBook = new BorrowedBook(book.getISBN(), nuser.getID());
         borrowedBookRepo.save(borrowedBook);
+        User user = userService.getEntityUser(nuser.getID());
         user.getBorrowedBooks().add(borrowedBook);
     }
 

@@ -2,6 +2,7 @@ package com.example.librarymanagementsystem.service;
 
 import com.example.librarymanagementsystem.model.dto.BookDTO;
 import com.example.librarymanagementsystem.model.dto.ReservedBookDTO;
+import com.example.librarymanagementsystem.model.dto.UserDTO;
 import com.example.librarymanagementsystem.model.entity.*;
 import com.example.librarymanagementsystem.model.repository.BookDescriptionRepo;
 import com.example.librarymanagementsystem.model.repository.ReservedBookRepo;
@@ -27,14 +28,14 @@ public class ReserveService {
     @Autowired
     private BookDescriptionRepo bookDescriptionRepo;
 
-    public void reserveBook(User user, Book book) {
+    public void reserveBook(UserDTO user, BookDTO book) {
         // Check if the book is in stock
-        BookDTO booktoReserve = Bookservice.getBookByISBN(book.getId());
+        BookDTO booktoReserve = Bookservice.getBookByISBN(book.getISBN());
         if (!booktoReserve.getAvailable() || booktoReserve.getStock() < 0) {
             throw new IllegalStateException("This book is in stock, no need to reserve.");
         }
         // Create and save the ReservedBook record
-        ReservedBook reservedBook = new ReservedBook(book.getId(), user.getID());
+        ReservedBook reservedBook = new ReservedBook(book.getISBN(), user.getID());
         ReserveRepo.save(reservedBook);
     }
 
