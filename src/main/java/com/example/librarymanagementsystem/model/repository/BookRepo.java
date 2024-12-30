@@ -7,9 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BookRepo extends JpaRepository<Book, Integer> {
     Page<Book> findAll(Pageable pageable);
+    Book findByISBN(String ISBN);
+//    List<Book> findByTitle(String title);
+//    List<Book> findByAuthor(String author);
+//    List<Book> findByGenre(String genre);
 
 }

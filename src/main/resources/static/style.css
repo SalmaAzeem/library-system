@@ -1,109 +1,247 @@
 /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body, h1, h2, h3, p, ul, li, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-  font-family: Arial, sans-serif;
-  color: #333;
-  background-color: #f4f4f9;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
 }
 
-/* Dashboard Layout */
-.dashboard {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 200px 1fr;
-  grid-template-areas:
-    "header header"
-    "sidebar content"
-    "footer footer";
-  height: 100vh;
+/* Header Styles */
+header {
+    background-color: #ffdcaa;
+    color: #000;
+    padding: 10px 20px;
 }
 
-.dashboard-header {
-  grid-area: header;
-  background-color: #0077b6;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+header h1 {
+    font-size: 1.8rem;
 }
 
-.dashboard-sidebar {
-  grid-area: sidebar;
-  background-color: #023e8a;
-  color: white;
-  padding: 1rem;
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin-top: 10px;
 }
 
-.dashboard-sidebar ul {
-  list-style: none;
+nav ul li {
+    margin: 0 10px;
 }
 
-.dashboard-sidebar li {
-  margin: 1rem 0;
+nav ul li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
 }
 
-.dashboard-sidebar a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  display: block;
-  padding: 0.5rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+nav ul li a:hover {
+    background-color: #fae4c5;
+    border-radius: 5px;
 }
 
-.dashboard-sidebar a:hover {
-  background-color: #0077b6;
+/* Main Content Styles */
+main {
+    padding: 20px;
 }
 
-.dashboard-content {
-  grid-area: content;
-  padding: 2rem;
-  overflow-y: auto;
+/* Signup Section */
+.signup-section, .login-section {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-section {
-  margin-bottom: 2rem;
+.signup-section h2, .login-section h2 {
+    font-size: 1.5rem;
+    color: #ffdcaa;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
-.hidden {
-  display: none;
+.signup-section form, .login-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* Form Popup */
-.form-popup {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  margin-top: 1rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+.signup-section input, .login-section input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
-.form-popup input {
-  display: block;
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
+.signup-section button, .login-section button {
+    background-color: #ffdcaa;
+    color: #000;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.form-popup button {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #0077b6;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
+.signup-section button:hover, .login-section button:hover {
+    background-color: #fae4c5;
 }
 
-.form-popup button:hover {
-  background-color: #005f8a;
+/* Library List */
+.library-list {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.library-list h2 {
+    font-size: 1.5rem;
+    color: #ffdcaa;
+    margin-bottom: 15px;
+}
+
+.library-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.library-list ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.library-list ul li:last-child {
+    border-bottom: none;
+}
+
+.library-list ul li a {
+    text-decoration: none;
+    color: #ffdcaa;
+    font-weight: bold;
+}
+
+.library-list ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #ffdcaa;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+/* Styling for book-list */
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.book-list h2 {
+    grid-column: span 3; /* Ensures the title spans across the grid */
+    text-align: center;
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.book-list-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.book-list-item a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.book-list-item a:hover {
+    color: #fae4c5;
+}
+
+.book-list-item p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .book-list {
+        grid-template-columns: 1fr; /* Single column for small screens */
+    }
+
+    .book-list-item {
+        padding: 10px;
+    }
+
+    .book-list-item a {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header, footer {
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .signup-section, .login-section, .library-list {
+        width: 90%;
+        padding: 15px;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/book")
 public class BookController {
+
     @Autowired
     private final BookService bookService;
     private final BookDescriptionService bookDescriptionService;
@@ -77,5 +78,20 @@ public class BookController {
     public String updateStock(@PathVariable String ISBN, @PathVariable int newStock) {
         bookService.updateStock(ISBN, newStock);
         return "redirect:/LibrarianDashboard";
+    }
+    private BookService bookService;
+
+    /**
+     * Displays details of a specific book by ISBN.
+     *
+     * @param ISBN  The ISBN of the book to retrieve details for.
+     * @param model The model to pass data to the view.
+     * @return The name of the HTML template for the book details.
+     */
+    @GetMapping("/{ISBN}")
+    public String bookInfo(@PathVariable String ISBN, Model model) {
+        Map<String, Object> bookDetails = bookService.getBookAndDescriptionByISBN(ISBN);
+        model.addAttribute("bookDetails", bookDetails);
+        return "BookInfo"; // Template for the book details
     }
 }

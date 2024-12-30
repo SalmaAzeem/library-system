@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Library Home</title>
+    <title>Book Details</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
-    <h1>Library Management System</h1>
+    <h1>Book Information</h1>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -20,20 +20,14 @@
     </nav>
 </header>
 <main>
-    <h2>Top 7 Books</h2>
-    <div class="book-list">
-        <ul>
-            <li th:each="entry : ${booksWithDescriptions}">
-                <div class="book-list-item">
-                    <a th:href="@{/book/{ISBN}(ISBN=${entry['book'].id})}">
-                        <strong th:text="${entry['title']}"></strong>
-                    </a>
-                    <p th:text="${entry['description']}"></p>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <p th:if="${#lists.isEmpty(booksWithDescriptions)}">No books available.</p>
+    <h2 th:text="${bookDetails['title']}"></h2>
+    <p><strong>ISBN:</strong> <span th:text="${bookDetails['book'].id}"></span></p>
+    <p><strong>Summary:</strong> <span th:text="${bookDetails['summary']}"></span></p>
+    <p><strong>Author:</strong> <span th:text="${bookDetails['author']}"></span></p>
+    <p><strong>Genre:</strong> <span th:text="${bookDetails['genre']}"></span></p>
+    <p><strong>Publisher:</strong> <span th:text="${bookDetails['publisher']}"></span></p>
+    <p><strong>Publication Date:</strong> <span th:text="${bookDetails['date']}"></span></p>
+    <p><strong>Pages:</strong> <span th:text="${bookDetails['pages']}"></span></p>
 </main>
 <footer>
     <p>Contact us at info@library.com | Library Hours: 9 AM - 8 PM</p>

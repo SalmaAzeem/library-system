@@ -7,10 +7,8 @@ import com.example.librarymanagementsystem.model.repository.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +36,30 @@ public class BookService {
             booksWithDescription.add(details);
         }
         return booksWithDescription;
+    }
+
+    public Map<String, Object> getBookAndDescriptionByISBN(String ISBN) {
+        // Fetch the book by its ISBN
+        if (ISBN == null) {
+            return null;
+        }
+        Book book = this.bookRepository.findByISBN(ISBN);
+
+        if (book == null) {
+            return Collections.emptyMap();
+        }
+        BookDescriptionDTO bookDescriptionDTO = bookDescriptionService.getDescription(ISBN);
+
+        Map<String, Object> details = new HashMap<>();
+        details.put("book", book);
+        details.put("title", bookDescriptionDTO.getTitle());
+        details.put("summary", bookDescriptionDTO.getSummary());
+        details.put("author", bookDescriptionDTO.getAuthor());
+        details.put("genre", bookDescriptionDTO.getGenre());
+        details.put("pages", bookDescriptionDTO.getPages());
+        details.put("publisher", bookDescriptionDTO.getPublisher());
+        details.put("date", bookDescriptionDTO.getPublicationDate());
+        return details;
     }
     // Create or update a book
     public BookDTO saveOrUpdateBook(BookDTO bookDTO) {
