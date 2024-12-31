@@ -72,4 +72,8 @@ public class LibraryController {
         model.addAttribute("books", books);
         return "AnyNBooks";
     }
+    @GetMapping("/librarianDashboard")
+    public String showDashboard() {
+        return "redirect:/librarianDashboard";  // Returns the name of the HTML file without the extension
+    }
 }
