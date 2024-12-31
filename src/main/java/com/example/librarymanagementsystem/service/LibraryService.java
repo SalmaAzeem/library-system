@@ -3,6 +3,7 @@ package com.example.librarymanagementsystem.service;
 import com.example.librarymanagementsystem.model.dto.BookDTO;
 import com.example.librarymanagementsystem.model.dto.LibraryDTO;
 import com.example.librarymanagementsystem.model.dto.UserDTO;
+import com.example.librarymanagementsystem.model.entity.Book;
 import com.example.librarymanagementsystem.model.entity.Library;
 import com.example.librarymanagementsystem.model.repository.LibraryRepo;
 import com.example.librarymanagementsystem.model.dto.BookDescriptionDTO;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 //Don't forget to have a creator class to initiate the Library
@@ -64,9 +66,32 @@ public class LibraryService {
         }
     }
 
-    public void deleteBook(String isbn)
-    {
-        this.bookService.deleteBook(isbn);
+    public List<BookDTO> getAllBooks() {
+        return bookService.getAllBooks();
+    }
+
+    public List<Map<String, Object>> getBooksWithDescriptions() {
+        return bookService.getBookAndDescription();
+    }
+
+    public Map<String, Object> getBookDetailsByISBN(String ISBN) {
+        return bookService.getBookAndDescriptionByISBN(ISBN);
+    }
+
+    public BookDTO saveOrUpdateBook(BookDTO bookDTO) {
+        return bookService.saveOrUpdateBook(bookDTO);
+    }
+
+    public void deleteBook(String ISBN) {
+        bookService.deleteBook(ISBN);
+    }
+
+    public BookDTO updateBookStock(String ISBN, int newStock) {
+        return bookService.updateStock(ISBN, newStock);
+    }
+
+    public List<BookDTO> getAnyNBooks(int n) {
+        return bookService.getAny7Books(n);
     }
     /*public List<BookDTO> getBooksByGenre(@RequestParam String genre) {
         List<BookDTO> books = bookService.categorize(genre);

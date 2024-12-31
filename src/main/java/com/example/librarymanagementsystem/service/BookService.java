@@ -18,8 +18,11 @@ public class BookService {
     @Autowired
     private BookDescriptionService bookDescriptionService;
 
-    public List<Book> getAny7Books(int n) {
-        return bookRepository.findAll(PageRequest.of(0, n-1)).getContent();
+    public List<BookDTO> getAny7Books(int n) {
+        List<Book> books = bookRepository.findAll(PageRequest.of(0, n-1)).getContent();
+        return books.stream()
+                .map(BookDTO::toDto)
+                .collect(Collectors.toList());
     }
     //To be modified
     public List<Map<String, Object>> getBookAndDescription() {

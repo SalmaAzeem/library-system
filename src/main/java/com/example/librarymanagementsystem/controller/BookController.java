@@ -34,7 +34,7 @@ public class BookController {
 
     @GetMapping("/any/{n}")
     public String getNBooks(@PathVariable int n, Model model) {
-        List<Book> books = bookService.getAny7Books(n);
+        List<BookDTO> books = bookService.getAny7Books(n);
         model.addAttribute("books", books);
         return "redirect:/LibrarianDashboard";
     }

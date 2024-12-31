@@ -1,69 +1,119 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librarian Dashboard</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div class="dashboard">
-    <header class="dashboard-header">
-        <h1>Librarian Dashboard</h1>
-    </header>
-    <nav class="dashboard-sidebar">
-        <ul>
-            <li><a href="#manage-books" onclick="showSection('books')">Manage Books</a></li>
-            <li><a href="#manage-users" onclick="showSection('users')">Manage Users</a></li>
-            <li><a href="#borrowed-books" onclick="showSection('borrowed')">Borrowed Books</a></li>
-        </ul>
-    </nav>
-    <main class="dashboard-content">
-        <!-- Manage Books Section -->
-        <section id="books-section" class="dashboard-section">
-            <h2>Manage Books</h2>
-            <button onclick="showForm('addBookForm')">Add Book</button>
-            <div id="addBookForm" class="form-popup">
-                <h3>Add New Book</h3>
-                <form th:action="@{/book}" method="post" th:object="${book}">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" required>
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" required>
-                    <label for="isbn">ISBN:</label>
-                    <input type="text" id="isbn" name="isbn" required>
-                    <button type="submit">Submit</button>
-                    <button type="button" onclick="closeForm('addBookForm')">Cancel</button>
-                </form>
-            </div>
-        </section>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Library Management</a>
+</nav>
 
-        <!-- Manage Users Section -->
-        <section id="users-section" class="dashboard-section hidden">
-            <h2>Manage Users</h2>
-            <button onclick="showForm('addUserForm')">Add User</button>
-            <div id="addUserForm" class="form-popup">
-                <h3>Add New User</h3>
-                <form onsubmit="submitUser(event)">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    <a type="submit">Submit</a>
-                    <button type="button" onclick="closeForm('addUserForm')">Cancel</button>
-                </form>
-            </div>
-        </section>
+<div class="container mt-4">
+    <h1>Librarian Dashboard</h1>
+    <div>
+        <h2>Library</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="library : ${libraryDTOS}">
+                <td th:text="${library.id}"></td>
+                <td th:text="${library.name}"></td>
+                <td th:text="${library.location}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <!-- Borrowed Books Section -->
-        <section id="borrowed-section" class="dashboard-section hidden">
-            <h2>Borrowed Books</h2>
-            <p>Track borrowed books and manage their due dates.</p>
-        </section>
-    </main>
-    <footer class="dashboard-footer">
-        <p>Library Management System © 2024</p>
-    </footer>
+    <!-- Books Section -->
+    <div class="mt-5">
+        <h2>Books</h2>
+        <a class="btn btn-primary mb-3" href="#" onclick="showAddBookForm()">Add New Book</a>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.ISBN}"></td>
+                <td th:text="${book.description.title}"></td>
+                <td th:text="${book.description.author}"></td>
+                <td th:text="${book.stock}"></td>
+                <td>
+                    <a th:href="@{'/libinfo/book/' + ${book.ISBN}}" class="btn btn-info btn-sm">Details</a>
+                    <a th:href="@{'/libinfo/book/delete/' + ${book.ISBN}}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add/Update Book Form -->
+    <div id="bookForm" class="mt-5" style="display: none;">
+        <h2>Add/Update Book</h2>
+        <form th:action="@{/libinfo/book}" th:object="${book}" method="post">
+            <div class="mb-3">
+                <label for="ISBN" class="form-label">ISBN</label>
+                <input type="text" id="ISBN" name="ISBN" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="description.title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" id="author" name="description.author" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" id="stock" name="stock" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+
+    <!-- Book Details Section -->
+    <div id="bookDetails" class="mt-5">
+        <h2>Book Details</h2>
+        <p><strong>ISBN:</strong> <span th:text="${bookDetails.ISBN}"></span></p>
+        <p><strong>Title:</strong> <span th:text="${bookDetails.title}"></span></p>
+        <p><strong>Author:</strong> <span th:text="${bookDetails.author}"></span></p>
+        <p><strong>Summary:</strong> <span th:text="${bookDetails.summary}"></span></p>
+        <p><strong>Stock:</strong> <span th:text="${bookDetails.stock}"></span></p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="mt-5">
+        <h2>Search Books</h2>
+        <form th:action="@{/libinfo/book/search}" method="get" class="mb-3">
+            <div class="row g-2">
+                <div class="col">
+                    <input type="text" name="query" class="form-control" placeholder="Search by title, author, etc." required>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+
+<script>
+    function showAddBookForm() {
+        document.getElementById('bookForm').style.display = 'block';
+    }
+</script>
 </body>
 </html>
