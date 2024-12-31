@@ -1,0 +1,41 @@
+@startuml
+start
+:Enter required info for adding book;
+if (Add Book?) then (yes)
+  :Run SQL Add Statement;
+  :Execute Add in Database;
+  if (Successful?) then (yes)
+    :Confirmation Message;
+  else (no)
+    :Error Message;
+  endif
+else (no)
+  if (Edit Book Info?) then (yes)
+    :Enter Book ID to Edit;
+    :Find the Book to Edit;
+    :Return Correct Book;
+    :Run SQL Edit Statement;
+    :Execute Edit in Database;
+    if (Successful?) then (yes)
+      :Confirmation Message;
+    else (no)
+      :Error Message;
+    endif
+  else (no)
+    if (Remove Book?) then (yes)
+      :Enter Book ID to Remove;
+      :Run SQL Remove Statement;
+      :Execute Remove in Database;
+      if (Successful?) then (yes)
+        :Confirmation Message;
+      else (no)
+        :Error Message;
+      endif
+    else (no)
+      stop
+    endif
+  endif
+endif
+stop
+@enduml
+

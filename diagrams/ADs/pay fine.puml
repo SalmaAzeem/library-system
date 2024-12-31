@@ -1,0 +1,20 @@
+@startuml
+start
+:Enter System;
+:Go to Borrowed Books Page;
+:Select Overdue Book;
+:Fine Calculated;
+
+if (Click Pay Fine?) then (yes)
+  :Go Through Payment Process;
+  :Validate Payment;
+  if (Payment Successful?) then (yes)
+    :Send Confirmation Message;
+  else (no)
+    :Display Payment Error;
+  endif
+else (no)
+  :Return to Previous Page;
+endif
+stop
+@enduml
