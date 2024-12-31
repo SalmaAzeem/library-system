@@ -5,20 +5,24 @@ import com.example.librarymanagementsystem.model.entity.ReservedBook;
 public class ReservedBookDTO {
     private String ISBN;
     private Integer userID;
+    private String bookTitle; // New field
 
     // Default Constructor
     public ReservedBookDTO() {}
 
     // Parameterized Constructor
-    public ReservedBookDTO(String ISBN, Integer userID) {
+    public ReservedBookDTO(String ISBN, Integer userID, String bookTitle) {
         this.ISBN = ISBN;
         this.userID = userID;
+        this.bookTitle = bookTitle;
     }
 
-    public static ReservedBookDTO toDto(ReservedBook entity) {
+    // Overloaded toDto to include bookTitle
+    public static ReservedBookDTO toDto(ReservedBook entity, String bookTitle) {
         return new ReservedBookDTO(
             entity.getISBN(),
-            entity.getUserID()
+            entity.getUserID(),
+            bookTitle
         );
     }
 
@@ -39,4 +43,11 @@ public class ReservedBookDTO {
         this.userID = userID;
     }
 
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
 }

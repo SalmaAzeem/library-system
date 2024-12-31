@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Table(name = "borrowed_book")
+@Table(name = "Reserved_books")
 @Entity
 @IdClass(ReservedBook.ReservedBookID.class)
 public class ReservedBook {

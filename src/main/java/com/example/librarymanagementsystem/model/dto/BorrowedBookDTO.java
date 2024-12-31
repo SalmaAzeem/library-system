@@ -9,24 +9,34 @@ public class BorrowedBookDTO {
     private Integer userID;
     private LocalDate borrowDate;
     private LocalDate dueDate;
+    private double fine;      // Existing field
+    private long lateDays;    // Existing field
+    private String bookTitle; // New field
 
     // Default Constructor
     public BorrowedBookDTO() {}
 
-    // Parameterized Constructor
-    public BorrowedBookDTO(String ISBN, Integer userID, LocalDate borrowDate, LocalDate dueDate) {
+    // Updated Parameterized Constructor
+    public BorrowedBookDTO(String ISBN, Integer userID, LocalDate borrowDate, LocalDate dueDate, double fine, long lateDays, String bookTitle) {
         this.ISBN = ISBN;
         this.userID = userID;
         this.borrowDate = borrowDate;
         this.dueDate = dueDate;
+        this.fine = fine;
+        this.lateDays = lateDays;
+        this.bookTitle = bookTitle;
     }
 
-    public static BorrowedBookDTO toDto(BorrowedBook entity) {
+    // Overloaded toDto Method
+    public static BorrowedBookDTO toDto(BorrowedBook entity, double fine, long lateDays, String bookTitle) {
         return new BorrowedBookDTO(
             entity.getISBN(),
             entity.getUserID(),
             entity.getBorrowDate(),
-            entity.getDueDate()
+            entity.getDueDate(),
+            fine,
+            lateDays,
+            bookTitle
         );
     }
 
@@ -61,5 +71,29 @@ public class BorrowedBookDTO {
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public double getFine() {
+        return fine;
+    }
+
+    public void setFine(double fine) {
+        this.fine = fine;
+    }
+
+    public long getLateDays() {
+        return lateDays;
+    }
+
+    public void setLateDays(long lateDays) {
+        this.lateDays = lateDays;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
     }
 }

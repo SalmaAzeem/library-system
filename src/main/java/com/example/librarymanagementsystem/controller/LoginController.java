@@ -9,12 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
+@SessionAttributes("loggedInUserID")
 public class LoginController {
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private LibrarianService librarianService;
 
@@ -29,7 +33,8 @@ public class LoginController {
         if ("librarian".equalsIgnoreCase(role)) {
             LibrarianDTO librarianDTO = librarianService.getLibrarian(employeeID);
             if (librarianDTO != null) {
-                return "redirect:/";
+                model.addAttribute("loggedInUserID", librarianDTO.getEmployeeID());
+                return "redirect:/"; // Redirect to home page
             } else {
                 model.addAttribute("error", "Invalid Employee ID");
                 return "Login";
@@ -37,7 +42,8 @@ public class LoginController {
         } else if ("user".equalsIgnoreCase(role)) {
             UserDTO user = userService.getUser(userID);
             if (user != null) {
-                return "redirect:/";
+                model.addAttribute("loggedInUserID", user.getID());
+                return "redirect:/"; // Redirect to home page
             } else {
                 model.addAttribute("error", "Invalid User ID");
                 return "Login";
@@ -45,6 +51,13 @@ public class LoginController {
         }
         model.addAttribute("error", "Please select a role.");
         return "Login";
+    }
+
+
+    @GetMapping("/logout")
+    public String logout(SessionStatus sessionStatus) {
+        sessionStatus.setComplete(); // Clear the session attributes
+        return "redirect:/login";
     }
 
     @GetMapping("/signup")
@@ -56,16 +69,11 @@ public class LoginController {
     @PostMapping("/signup")
     public String processSignUp(UserDTO userDTO, Model model) {
         try {
-            System.out.println(userDTO.getID());
-            System.out.println(userDTO.getName());
-            System.out.println(userDTO.getAge());
-            System.out.println(userDTO.getGender());
             userService.saveUser(userDTO);
-            return "redirect:/";
+            return "redirect:/login";
         } catch (Exception e) {
             model.addAttribute("error", "Unable to Sign up. Please try again.");
             return "SignUp";
         }
     }
-
 }

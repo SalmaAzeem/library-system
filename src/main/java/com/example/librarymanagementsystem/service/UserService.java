@@ -1,5 +1,7 @@
 package com.example.librarymanagementsystem.service;
 
+import javax.swing.*;
+
 import com.example.librarymanagementsystem.model.dto.UserDTO;
 import com.example.librarymanagementsystem.model.entity.User;
 import com.example.librarymanagementsystem.model.repository.UserRepo;
@@ -30,6 +32,10 @@ public class UserService {
     public UserDTO getUser(int ID) {
         Optional<User> user = this.userRepo.findById(ID);
         return user.map(UserDTO::toDTo).orElse(null);
+    }
+    public User getEntityUser(int ID){
+        return userRepo.findById(ID)
+                .orElseThrow(() -> new IllegalArgumentException("User with ID " + ID + " not found"));
     }
 
     public void DeleteUser(int ID) {
