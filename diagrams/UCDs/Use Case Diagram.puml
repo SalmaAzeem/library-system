@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+actor Librarian as lib
+actor User as use
+rectangle "System" {
+(Assign Borrowed Book) as assign
+(Book Search) as search
+(Log in) as log
+(Manage Books) as mng
+(Pay Book Fine) as pay
+(Reserve Book) as res
+    use --> log
+    use --> search
+    lib --> assign
+    assign ..> use : <<notifies>>
+    lib --> mng
+    use --> pay
+    use --> res
+}
+@enduml
