@@ -1,0 +1,18 @@
+@startuml
+start
+:Enter Search Query;
+:Process Query;
+if (Book Found?) then (yes)
+  :Select Book;
+  if (Check Availability) then (In Stock)
+    :Borrow Book;
+  else (Out of Stock)
+    :Display Error;
+    stop
+  endif
+  :Book is Reserved;
+else (no)
+  :No Results Found;
+endif
+stop
+@enduml

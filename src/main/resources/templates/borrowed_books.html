@@ -64,6 +64,12 @@
                         <td th:text="${book.ISBN}"></td>
                         <td th:text="${book.borrowDate}"></td>
                         <td th:text="${book.dueDate}"></td>
+                        <td>
+                            <form th:action="@{/borrowed-books/borrow/remove}" method="post">
+                                <input type="hidden" name="ISBN" th:value="${book.ISBN}">
+                                <button type="submit">Remove</button>
+                            </form>
+                        </td>
                     </tr>
                     <tr th:if="${#lists.isEmpty(borrowedBooks)}">
                         <td colspan="3">No borrowed books found for this user.</td>
@@ -106,6 +112,12 @@
                     <tr th:each="book : ${reservedBooks}">
                         <td th:text="${book.ISBN}"></td>
                         <td th:text="${book.bookTitle}"></td>
+                        <td>
+                            <form th:action="@{/borrowed-books/reserve/remove}" method="post">
+                                <input type="hidden" name="ISBN" th:value="${book.ISBN}">
+                                <button type="submit">Remove</button>
+                            </form>
+                        </td>
                     </tr>
                     <tr th:if="${#lists.isEmpty(reservedBooks)}">
                         <td colspan="2">No reserved books found for this user.</td>
