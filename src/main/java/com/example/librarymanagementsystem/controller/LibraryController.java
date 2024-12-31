@@ -16,64 +16,65 @@ import java.util.Map;
  * Controller class for managing the library.
  */
 @Controller
+@RequestMapping("/LibrarianDashboard")
 public class LibraryController {
     @Autowired
     private LibraryService libraryService;
 
-    @GetMapping("/libinfo")
+    @GetMapping("/LibrarianDashboard")
     public String displayInfo(Model model) {
         List<LibraryDTO> libraryDTOS = libraryService.getAllLibraries();
         model.addAttribute("libraryDTOS", libraryDTOS);
         return "Library";
     }
 
-    @GetMapping("/libinfo/books")
+    @GetMapping("/LibrarianDashboard/books")
     public String displayBooks(Model model) {
         List<BookDTO> books = libraryService.getAllBooks();
         model.addAttribute("books", books);
         return "Books";
     }
 
-    @GetMapping("/libinfo/books/description")
+    @GetMapping("/LibrarianDashboard/books/description")
     public String displayBooksWithDescription(Model model) {
         List<Map<String, Object>> booksWithDescription = libraryService.getBooksWithDescriptions();
         model.addAttribute("booksWithDescription", booksWithDescription);
         return "BooksWithDescription";
     }
 
-    @GetMapping("/libinfo/book/{ISBN}")
+    @GetMapping("/LibrarianDashboard/book/{ISBN}")
     public String displayBookDetails(@PathVariable String ISBN, Model model) {
         Map<String, Object> bookDetails = libraryService.getBookDetailsByISBN(ISBN);
         model.addAttribute("bookDetails", bookDetails);
         return "BookDetails";
     }
 
-    @PostMapping("/libinfo/book")
+    @PostMapping("/LibrarianDashboard/book")
     public String saveOrUpdateBook(@ModelAttribute BookDTO bookDTO, Model model) {
         libraryService.saveOrUpdateBook(bookDTO);
         return "redirect:/libinfo/books";
     }
 
-    @GetMapping("/libinfo/book/delete/{ISBN}")
+    @GetMapping("/LibrarianDashboard/book/delete/{ISBN}")
     public String deleteBook(@PathVariable String ISBN) {
         libraryService.deleteBook(ISBN);
         return "redirect:/libinfo/books";
     }
 
-    @PostMapping("/libinfo/book/update-stock")
+    @PostMapping("/LibrarianDashboard/book/update-stock")
     public String updateStock(@RequestParam String ISBN, @RequestParam int newStock, Model model) {
         libraryService.updateBookStock(ISBN, newStock);
         return "redirect:/libinfo/books";
     }
 
-    @GetMapping("/libinfo/books/any")
+    @GetMapping("/LibrarianDashboard/books/any")
     public String displayAnyNBooks(@RequestParam int n, Model model) {
         List<BookDTO> books = libraryService.getAnyNBooks(n);
         model.addAttribute("books", books);
         return "AnyNBooks";
     }
-    @GetMapping("/librarianDashboard")
+    @RequestMapping(value = "/librarianDashboard", method = RequestMethod.GET)
     public String showDashboard() {
-        return "redirect:/librarianDashboard";  // Returns the name of the HTML file without the extension
+        return "LibrarianDashboard";  // Returns the name of the HTML file without the extension
     }
 }

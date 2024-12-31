@@ -17,6 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/book")
+@SessionAttributes("loggedInUserID")
 public class BookController {
 
     @Autowired
