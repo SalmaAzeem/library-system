@@ -51,4 +51,14 @@ public class BorrowedBookController {
 
         return "borrowed_books";
     }
+    @PostMapping("/borrow/remove")
+    public String removeBorrowedBook(@SessionAttribute("loggedInUserID") Integer userID, @RequestParam String ISBN ,Model model){
+        borrowedBookService.removeBorrowedBookbyID(userID, ISBN);
+        return "redirect:/borrowed-books";
+    }
+    @PostMapping("/reserve/remove")
+    public String removeReservedBook(@SessionAttribute("loggedInUserID") Integer userID, @RequestParam String ISBN ,Model model){
+        reserveService.removeReservedBookbyID(userID, ISBN);
+        return "redirect:/borrowed-books";
+    }
 }

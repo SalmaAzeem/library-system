@@ -43,6 +43,17 @@ public class BorrowService {
         user.getBorrowedBooks().add(borrowedBook);
     }
 
+    public void removeBorrowedBookbyID(Integer userID, String ISBN){
+
+        BorrowedBook.BorrowedBookId ID = new BorrowedBook.BorrowedBookId(ISBN,userID);
+        if (!borrowedBookRepo.existsById(ID)) {
+            throw new IllegalArgumentException("Borrowed book not found for the provided User ID and ISBN.");
+        }
+        borrowedBookRepo.deleteById(ID);
+    }
+
+
+
     public List<BorrowedBookDTO> getBorrowedBooksByUserID(Integer userID) {
     return borrowedBookRepo.findAllByUserID(userID)
             .stream()

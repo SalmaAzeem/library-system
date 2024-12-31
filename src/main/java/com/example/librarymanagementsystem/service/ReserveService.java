@@ -39,6 +39,15 @@ public class ReserveService {
         ReserveRepo.save(reservedBook);
     }
 
+        public void removeReservedBookbyID(Integer userID, String ISBN){
+
+        ReservedBook.ReservedBookID ID = new ReservedBook.ReservedBookID(ISBN,userID);
+        if (!ReserveRepo.existsById(ID)) {
+            throw new IllegalArgumentException("Reserved book not found for the provided User ID and ISBN.");
+        }
+        ReserveRepo.deleteById(ID);
+    }
+
     public List<ReservedBookDTO> getReservedBooksbyUserID(Integer userID) {
         return ReserveRepo.findAllByUserID(userID)
                 .stream()
