@@ -21,10 +21,9 @@ object User {
 
 object Librarian {
   ID
-  Role
 }
 
-object Loan {
+object Borrow {
   Issue Date
   Due Date
 }
@@ -39,9 +38,9 @@ Library "1" --> "*" Book : Holds
 Library "1" --> "*" User : Has
 Library "1" --> "*" Librarian : Employs
 Book "1" --> "1" Stock : Has
-User "1" --> "*" Loan : Borrows
-Loan "1" --> "1" Book : For
-Loan "0..1" --> "1" Fine : Related to
-Librarian "1" --> "*" Loan : Processes
+User "1" --> "*" Borrow : Borrows
+Borrow "1" --> "1" Book : For
+Borrow "0..1" --> "1" Fine : Related to
+Librarian "1" --> "*" Borrow : Processes
 
 @enduml
