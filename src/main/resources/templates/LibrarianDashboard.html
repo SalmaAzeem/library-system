@@ -12,6 +12,7 @@
 
 <div class="container mt-4">
     <h1>Librarian Dashboard</h1>
+    <!-- Library Section -->
     <div>
         <h2>Library</h2>
         <table class="table table-bordered">
@@ -42,19 +43,25 @@
                 <th>ISBN</th>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Publisher</th>
                 <th>Stock</th>
+                <th>Genre</th>
+                <th>Can Be Borrowed</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="book : ${books}">
                 <td th:text="${book.ISBN}"></td>
-                <td th:text="${book.description.title}"></td>
-                <td th:text="${book.description.author}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.publisher}"></td>
                 <td th:text="${book.stock}"></td>
+                <td th:text="${book.genre}"></td>
+                <td th:text="${book.canBeBorrowed ? 'Yes' : 'No'}"></td>
                 <td>
-                    <a th:href="@{'/LibrarianDashboard/book/' + ${book.ISBN}}" class="btn btn-info btn-sm">Details</a>
-                    <a th:href="@{'/LibrarianDashboard/book/delete/' + ${book.ISBN}}" class="btn btn-danger btn-sm">Delete</a>
+                    <a th:href="@{'/librarianDashboard/book/' + ${book.ISBN}}" class="btn btn-info btn-sm">Details</a>
+                    <a th:href="@{'/librarianDashboard/book/delete/' + ${book.ISBN}}" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
             </tbody>
@@ -64,37 +71,43 @@
     <!-- Add/Update Book Form -->
     <div id="bookForm" class="mt-5" style="display: none;">
         <h2>Add/Update Book</h2>
-        <form th:action="@{/LibrarianDashboard/book}" th:object="${book}" method="post">
+        <form th:action="@{/librarianDashboard/book}" th:object="${book}" method="post">
             <div class="mb-3">
                 <label for="ISBN" class="form-label">ISBN</label>
                 <input type="text" id="ISBN" name="ISBN" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" id="title" name="description.title" class="form-control" required>
+                <input type="text" id="title" name="title" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="author" class="form-label">Author</label>
-                <input type="text" id="author" name="description.author" class="form-control" required>
+                <input type="text" id="author" name="author" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="publisher" class="form-label">Publisher</label>
+                <input type="text" id="publisher" name="publisher" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" id="stock" name="stock" class="form-control" required>
             </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" id="genre" name="genre" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="canBeBorrowed" class="form-label">Can Be Borrowed</label>
+                <select id="canBeBorrowed" name="canBeBorrowed" class="form-select">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-success">Save</button>
         </form>
     </div>
 
-    <!-- Book Details Section -->
-    <div id="bookDetails" class="mt-5">
-        <h2>Book Details</h2>
-        <p><strong>ISBN:</strong> <span th:text="${bookDetails.ISBN}"></span></p>
-        <p><strong>Title:</strong> <span th:text="${bookDetails.title}"></span></p>
-        <p><strong>Author:</strong> <span th:text="${bookDetails.author}"></span></p>
-        <p><strong>Summary:</strong> <span th:text="${bookDetails.summary}"></span></p>
-        <p><strong>Stock:</strong> <span th:text="${bookDetails.stock}"></span></p>
-    </div>
-
+    <h3><span><a href="borrowed_books.html">Borrowed Books</a></span></h3>
     <!-- Search Section -->
     <div class="mt-5">
         <h2>Search Books</h2>
@@ -109,6 +122,7 @@
             </div>
         </form>
     </div>
+
 </div>
 
 <script>
