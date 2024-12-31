@@ -1,0 +1,109 @@
+@startuml
+!pragma layout smetana
+
+' Fine Management
+class FineManagement {
+  + calculateFine(BorrowBook borrowedBook)
+  + notify(Integer ID)
+}
+
+' Library class
+class Library {
+  - name: String
+  - location: String
+  - clerk: Librarian
+  - booksList: BookList
+  - users: User
+  - currentBorrowedList: BookList
+  + login(String type, Integer personID)
+  + signup(String name, Integer age, String gender)
+  + retrieve(Book book)
+  + displayBorrowedList(String userID): List<BorrowedBook>
+  + displayReservedList(String userID): List<ReservedBook>
+  + viewTopFrequent(Integer number): List<User>
+}
+
+' Book class
+class Book {
+  - bookDescription: BookDescription
+  - stock: Integer
+  - available: Boolean
+  + addBook()
+  + displayInfo()
+}
+
+' Book Description
+class BookDescription {
+  - author: String
+  - publisher: String
+  - ISBN: String
+  - title: String
+  - id: Integer
+  - publicationDate: Date
+  - tableOfContents: List
+  - genre: String
+  - summary: String
+  + viewDescription(): void
+}
+
+' User class
+class User {
+  - id: Integer
+  - borrowedList: BookList
+  - reservedList: BookList
+  - frequency: Integer
+  + addToBorrowedList()
+  + reserve(Book book): Boolean
+}
+
+' Abstract Person class
+abstract class Person {
+  - name: String
+  - age: Integer
+  - gender: Enum
+  - email: String
+  - phoneNumber: Integer
+  - password: String
+  + editName(String name): void
+  + editEmail(String email): void
+  + editPassword(String password): void
+  + editPhoneNumber(Integer phoneNumber): void
+}
+
+' Librarian
+class Librarian {
+  - employeeID: Integer
+}
+
+' Borrow Book class
+class BorrowBook {
+  - ISBN: String
+  - userID: Integer
+  - borrowDate: LocalDate
+  - dueDate: LocalDate
+  + borrowBook(UserDTO user, BookDTO book): void
+  + getBorrowedBooksByUserID(Integer userID): List<BorrowedBookDTO>
+}
+
+' Reserved Book class
+class ReservedBook {
+  - ISBN: String
+  - userID: Integer
+  + reserveBook(UserDTO user, BookDTO book): void
+  + getReservedBooksByUserID(Integer userID): List<ReservedBook>
+}
+
+' Relationships
+FineManagement "1" --> "1" BorrowBook : Processes
+Book "1" --> "1" BookDescription : Contains
+Person <|-- Librarian
+Person <|-- User
+User --> BorrowBook : Borrows
+User --> ReservedBook : Reserves
+Library "1" --> "*" User : Manages
+Library "1" --> "*" Book : Contains
+Librarian "1" --> "*" BorrowBook : Manages
+Librarian "1" --> "1" Library : Works in
+FineManagement "1" --> "*" User : Notifies
+
+@enduml

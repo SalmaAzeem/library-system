@@ -9,6 +9,9 @@ Page -> DB: Query relevant data
 DB --> Page: Return relevant books
 Page --> User: Book details (Out of Stock)
 User -> System: Click Reserve Button
+System -> DB : Adding to reserve entity
+DB --> System : operation completed
 System --> User: Book Reserved Confirmation
+
 
 @enduml
