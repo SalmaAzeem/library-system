@@ -52,19 +52,19 @@ public class LibraryController {
     @PostMapping("/LibrarianDashboard/book")
     public String saveOrUpdateBook(@ModelAttribute BookDTO bookDTO, Model model) {
         libraryService.saveOrUpdateBook(bookDTO);
-        return "redirect:/libinfo/books";
+        return "redirect:/LibrarianDashboard/books";
     }
 
     @GetMapping("/LibrarianDashboard/book/delete/{ISBN}")
     public String deleteBook(@PathVariable String ISBN) {
         libraryService.deleteBook(ISBN);
-        return "redirect:/libinfo/books";
+        return "redirect:/LibrarianDashboard/books";
     }
 
     @PostMapping("/LibrarianDashboard/book/update-stock")
     public String updateStock(@RequestParam String ISBN, @RequestParam int newStock, Model model) {
         libraryService.updateBookStock(ISBN, newStock);
-        return "redirect:/libinfo/books";
+        return "redirect:/LibrarianDashboard/books";
     }
 
     @GetMapping("/LibrarianDashboard/books/any")
@@ -73,7 +73,7 @@ public class LibraryController {
         model.addAttribute("books", books);
         return "AnyNBooks";
     }
-    @RequestMapping(value = "/librarianDashboard", method = RequestMethod.GET)
+    @RequestMapping(value = "/LibrarianDashboard", method = RequestMethod.GET)
     public String showDashboard() {
         return "LibrarianDashboard";  // Returns the name of the HTML file without the extension
     }
